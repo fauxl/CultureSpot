@@ -1,0 +1,17 @@
+http://trovacinema.repubblica.it/
+Scaricare ogni 1 mese
+
+https://www.rockol.it/concerti-ricerca
+Scaricare ogni 7 giorni
+
+Chiavi
+JAVASCRIPT/REST
+The HERE JavaScript API offers easy-to-use libraries of classes and methods for both desktop and mobile. 
+Use it to visualize maps, accurate directions, geocoding and traffic. 
+HERE REST APIs offer simple HTTP GET methods to access the features included in your plan.
+
+APP ID
+SNhbsSBKEVzTCVk4jwD7
+APP CODE
+ICVJ87EZSOYVwYvcjSLTug
+
