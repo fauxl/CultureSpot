@@ -1,24 +1,13 @@
 
     <%
 	Collection<?> film = (Collection<?>) request.getAttribute("film");
-	
 	Collection<?> spettacoli = (Collection<?>) request.getAttribute("spettacoli");
 
-	boolean bool = true;	
 %>
 
 <%@ page contentType="text/html; charset=UTF-8"
 	import="java.util.*,Culture.*"%>
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-
+cazzo
 	<div class="dropdown" id="mydrop">
 
 			<%
@@ -57,6 +46,3 @@
 			<%
 						}} %>
 		</div>
-
-</body>
-</html>

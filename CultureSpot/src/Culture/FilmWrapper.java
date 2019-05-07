@@ -88,8 +88,10 @@ public class FilmWrapper {
 		 page = client.getPage(searchUrl);
 		}catch(Exception e){
 			  e.printStackTrace();
+			  return null;
 			}
 						}}
+
 			List<HtmlAnchor> posti = page.getByXPath("//div[@class='mm-menu-colonnina']/a");
 			if(posti.isEmpty()){  
 				  System.out.println("No items found !");
@@ -110,6 +112,7 @@ public class FilmWrapper {
 			List<HtmlElement> items = page.getByXPath("//div[@class='mm-padding-16 mm-col md-9']");
 	if(items.isEmpty()){  
 	  System.out.println("No items found !");
+	  return null;
 	}else{
 		  System.out.println(items.size());	
 

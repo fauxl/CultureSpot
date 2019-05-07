@@ -2,7 +2,7 @@ package Culture;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
+import java.util.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,10 +13,6 @@ import Culture.GestioneDataModel;
 import Culture.GestioneDataModelDS;
 
 
-
-/**
- * Servlet implementation class OrdersControl
- */
 public class GestioneData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -39,28 +35,60 @@ public class GestioneData extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
+		String posto = request.getParameter("searchbar");
+
 		try {
+			String action = request.getParameter("action");
 
-				String posto = request.getParameter("searchbar");
+			if (action != null) {
 				
-				request.removeAttribute("musei");
-				request.removeAttribute("monumento");
-				request.removeAttribute("librerie");
-				request.removeAttribute("cinema");
-				request.removeAttribute("concerti");
-				request.removeAttribute("teatri");
+				String posto2 = request.getParameter("posto");
+				if (action.equalsIgnoreCase("read")) {
 				
-				request.setAttribute("musei", model.doRetrieveByKeyMuseo(posto));
-				request.setAttribute("librerie", LibraryWrapper.Wrapper(posto));
-				request.setAttribute("cinema", CinemaWrapper.Wrapper(posto));
-				request.setAttribute("monumenti", model.doRetrieveByKeyMonumento(posto));
-				request.setAttribute("concerti", ConcertWrapper.Wrapper(posto));
-				request.setAttribute("teatri", TheaterWrapper.Wrapper(posto));
-
-
-
+			String cinema = request.getParameter("nomecinema");
+			request.removeAttribute("film");
+			request.setAttribute("film", FilmWrapper.Wrapper(posto2,cinema));
+				}
+			if (action.equalsIgnoreCase("teatro")) {
+				String cinema = request.getParameter("nomecinema");
+			request.removeAttribute("spettacolo");
+			request.setAttribute("spettacoli", SpectacleWrapper.Wrapper(posto2,cinema));
+			}
 			
+			
+				}
+			request.removeAttribute("musei");
+			request.removeAttribute("monumento");
+			request.removeAttribute("librerie");
+			request.removeAttribute("film");
+			request.removeAttribute("cinema");
+			request.removeAttribute("concerti");
+			request.removeAttribute("teatri");
+			
+			Collection<?> cinema = (Collection<?>) CinemaWrapper.Wrapper(posto);
+			Collection<FilmBean> film=  new LinkedList<FilmBean>();
+
+			if (cinema != null && cinema.size() != 0) {
+				Iterator<?> it = cinema.iterator();
+				while (it.hasNext()) {
+					Bean bean = (Bean) it.next();	
+					if (film!=null) {
+					film.addAll(FilmWrapper.Wrapper(posto,bean.getNome()));
+					}
+				}
+				}
+				
+			request.setAttribute("film", film);
+			request.setAttribute("musei", model.doRetrieveByKeyMuseo(posto));
+			request.setAttribute("librerie", LibraryWrapper.Wrapper(posto));
+			request.setAttribute("cinema", CinemaWrapper.Wrapper(posto));
+			request.setAttribute("monumenti", model.doRetrieveByKeyMonumento(posto));
+			request.setAttribute("concerti", ConcertWrapper.Wrapper(posto));
+			// request.setAttribute("teatri", null); //
+			request.setAttribute("teatri", TheaterWrapper.Wrapper(posto));
+			request.setAttribute("postoOut", posto); 
+
+
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}

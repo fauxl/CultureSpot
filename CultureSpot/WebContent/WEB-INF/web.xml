@@ -20,14 +20,6 @@
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-    <servlet-name>FilmProvider</servlet-name>
-    <servlet-class>Culture.FilmProvider</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FilmProvider</servlet-name>
-    <url-pattern>/film</url-pattern>
-  </servlet-mapping>
-  
+
    
 </web-app>

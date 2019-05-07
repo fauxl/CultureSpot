@@ -7,6 +7,46 @@ html {
 	height: 100%;
 }
 
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding: 5% 0% 10% 0%;
+	align-content: center;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	/* overflow: scroll; */ /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+#popone {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 1%;
+	overflow: scroll;
+	border: 0;
+	width: 55%;
+	height: 55%;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
 #topBar {
 	width: 60%;
 	margin-left: 20%;
@@ -16,7 +56,7 @@ html {
 	top: 0;
 }
 
-#mapButton{
+#mapButton {
 	widht: 260px;
 	/* height: 35px; */
 	padding: 2%;
@@ -29,19 +69,41 @@ html {
 	border-radius: 6px;
 }
 
-#iconaMappa{
+#iconaMappa {
 	vertical-align: center;
+	padding: 1.5px;
+	margin-right: 2px;
+}
+
+#iconaFilm {
+	vertical-align: center;
+	padding: 1.5px;
+	margin-right: 2px;
+}
+
+#programButton {
+	widht: 260px;
+	/* height: 35px; */
+	padding: 2%;
+	vertical-align: middle;
+	float: right;
+	background: #526ad5;
+	color: white;
+	margin: auto;
+	margin-right: 1%;
+	margin-top: -5px;
+	border-radius: 6px;
 }
 
 #containerLogo {
 	margin: auto;
-	height: 120%;
-	width: 24%;
+	height: 115%;
+	width: 23%;
 }
 
 #logo {
-	margin-top: 7%;
-	height: 120%;
+	margin-top: 6%;
+	height: 115%;
 }
 
 #corpo {
@@ -60,37 +122,146 @@ html {
 	width: 50%;
 	margin-left: 25%;
 	margin-right: 25%;
-	color: #505050;
+	color: #606060;
 }
 
-#tipologia {
+#tipologiaMusei {
 	border-radius: 8px;
-	font-size: 18px;
+	font-size: 17.5px;
+	border-width: thin;
+	border-style: solid;
+	border-color: #D8D8D8;
+	vertical-align: middle;
+	padding: 3.2% 1.2% 3.2% 1.2%;
+	background-color: transparent;
+	padding-left: 22px;
 }
 
-#apriRisultati{
-	font-size: 36px;
-	color: #4ec0c4;
+#tipologiaMonumenti {
+	border-radius: 8px;
+	font-size: 17.5px;
+	border-width: thin;
+	border-style: solid;
+	border-color: #D8D8D8;
+	vertical-align: middle;
+	padding: 3.2% 1.2% 3.2% 1.2%;
+	background-color: transparent;
+	padding-left: 22px;
+}
+
+#tipologiaLibrerie {
+	border-radius: 8px;
+	font-size: 17.5px;
+	border-width: thin;
+	border-style: solid;
+	border-color: #D8D8D8;
+	vertical-align: middle;
+	padding: 3.2% 1.2% 3.2% 1.2%;
+	background-color: transparent;
+	padding-left: 22px;
+}
+
+#tipologiaCinema {
+	border-radius: 8px;
+	font-size: 17.5px;
+	border-width: thin;
+	border-style: solid;
+	border-color: #D8D8D8;
+	vertical-align: middle;
+	padding: 3.2% 1.2% 3.2% 1.2%;
+	background-color: transparent;
+	padding-left: 22px;
+}
+
+#tipologiaConcerti {
+	border-radius: 8px;
+	font-size: 17.5px;
+	border-width: thin;
+	border-style: solid;
+	border-color: #D8D8D8;
+	vertical-align: middle;
+	padding: 3.2% 1.2% 3.2% 1.2%;
+	background-color: transparent;
+	padding-left: 22px;
+}
+
+#tipologiaTeatri {
+	border-radius: 8px;
+	font-size: 17.5px;
+	border-width: thin;
+	border-style: solid;
+	border-color: #D8D8D8;
+	vertical-align: middle;
+	padding: 3.2% 1.2% 3.2% 1.2%;
+	background-color: transparent;
+	padding-left: 22px;
+}
+
+#apriRisultati {
+	font-size: 38px;
+	color: #DCDCDC;
 	float: right;
-	margin-right: 18px;
-	margin-top: -5px;
+	margin-right: 20px;
+	margin-top: -1px;
+	transition: 0.75s ease;
+}
+
+#apriRisultati:hover {
+	color: #4ec0c4;
 }
 
 #iconaMusei {
-	font-size: 34px;
+	font-size: 32px;
 	color: #e74c3c;
 	margin: auto;
 	vertical-align: middle;
-	margin-right: 20px;
-	
+	margin-right: 17px;
+	margin-left: 5px;
 }
 
 #iconaMonumenti {
-	font-size: 34px;
+	font-size: 32px;
 	color: #e74c3c;
 	margin: auto;
 	vertical-align: middle;
 	margin-right: 20px;
+	margin-left: 10px;
+}
+
+#iconaLibrerie {
+	font-size: 32px;
+	color: #e74c3c;
+	margin: auto;
+	vertical-align: middle;
+	margin-right: 20px;
+	margin-left: 7px;
+}
+
+#iconaCinema {
+	font-size: 31.5px;
+	color: #e74c3c;
+	margin: auto;
+	vertical-align: middle;
+	margin-right: 15px;
+	margin-left: 8px;
+}
+
+#iconaConcerti {
+	font-size: 32px;
+	color: #e74c3c;
+	margin: auto;
+	vertical-align: middle;
+	margin-right: 20px;
+	margin-left: 12px;
+}
+
+#iconaTeatri {
+	font-size: 32px;
+	color: #e74c3c;
+	margin: auto;
+	vertical-align: middle;
+	margin-right: 15px;
+	margin-left: 4px;
 }
 
 .dropdown {
@@ -147,11 +318,6 @@ html {
 	display: block;
 }
 
-#tipologia {
-	padding: 4% 2% 4% 2%;
-	background-color: #f1f1f1;
-}
-
 .dropdown {
 	overflow: hidden;
 }
@@ -159,10 +325,11 @@ html {
 #row {
 	padding: 3%;
 	margin: auto;
-	width: 570px;
+	width: 610px;
 	height: auto;
-	background: #E8E8E8;
+	background: #F0F0F0;
 	border-radius: 8px;
+	font-size: 16px;
 }
 
 #img {
@@ -171,23 +338,9 @@ html {
 }
 
 #description {
-	margin-top: 8%;
+	margin-top: 6.5%;
 	text-align: center;
 	font-size: 20px;
-}
-
-#searchBoxContainer {
-	height: 19%;
-	margin: auto;
-}
-
-#icon {
-    font-size: 22px;
-    float: left;
-    position: relative;
-    margin-top: 25px;
-    margin-left: 25px;
-    color: #4ec0c4;
 }
 
 i#icon2 {
@@ -209,22 +362,42 @@ p#none {
 
 #searchBox {
 	font-family: 'Montserrat', sans-serif;
-	font-size: 19px;
+	font-size: 18.5px;
+	background: transparent;
 	margin: auto;
 	width: 100%;
-	height: 50%;
+	height: 45.5%;
 	border-radius: 50px;
 	border-width: thin;
 	border-style: solid;
 	border-color: #D8D8D8;
-	padding-left: 63px;
-	padding-right: 63px;
-	margin-top: -5%;
+	padding-left: 72px;
+	padding-right: 60px;
+}
+
+p#details {
+	margin-top: -10%;
+	padding-left: 15%;
+	float: left;
 }
 
 #searchBox:focus {
 	outline: none;
 	border-color: #1dd1a1;
+}
+
+#searchBoxContainer {
+	height: 16.5%;
+	margin: auto;
+	margin-top: -40px;
+	margin-bottom: 12px;
+}
+
+#iconCerca {
+	font-size: 22.5px;
+	margin-left: 32px;
+	position: relative;
+	color: #4ec0c4;
 }
 
 #checkContainer {
@@ -242,17 +415,17 @@ p#none {
 }
 
 #check {
-	margin-left: 3%;
-	height: 4%;
-	width: 2%;
+	margin-left: 2%;
+	height: 18px;
+	width: 18px;
 	border: 0;
 	vertical-align: middle;
 }
 
 #check2 {
-	margin-left: 1%;
-	height: 4%;
-	width: 2%;
+	margin-left: 0;
+	height: 18px;
+	width: 18px;
 	border: 0;
 	vertical-align: middle;
 }
@@ -264,22 +437,19 @@ label {
 }
 
 footer {
-	margin-top: 5%;
+	margin-top: 2%;
 	bottom: 0;
 }
 
 #copyright {
-	margin-left: 20%;
-	margin-right: 20%;
-	width: 60%;
-	border-top-style: solid;
-	border-top-color: #4ec0c4;
-	border-top-width: thin;
-	border-bottom-style: solid;
-	border-bottom-color: #526ad5;
-	border-bottom-width: thin;
+	margin: auto;
+	width: 500px;
+	heigth: 40px;
+	padding: 1%;
 	font-size: 16px;
-	padding: 3% 0% 2% 0%;
-	color: #505050;
+	color: white;
+	border-radius: 50px;
+	background: #34495e;
 	text-align: center;
+	margin-bottom: 2%;
 }

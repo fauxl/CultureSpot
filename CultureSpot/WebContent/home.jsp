@@ -5,9 +5,14 @@
 	Collection<?> monumenti = (Collection<?>) request.getAttribute("monumenti");
 	Collection<?> librerie = (Collection<?>) request.getAttribute("librerie");
 	Collection<?> cinema = (Collection<?>) request.getAttribute("cinema");
+	Collection<?> film = (Collection<?>) request.getAttribute("film");
+
 	Collection<?> concerti = (Collection<?>) request.getAttribute("concerti");
 	Collection<?> teatri = (Collection<?>) request.getAttribute("teatri");
-
+	String postoIn = (String) request.getAttribute("postoOut");
+	if (postoIn == null) {
+		postoIn = "";
+	}
 	boolean bool = true;
 %>
 
@@ -15,6 +20,67 @@
 	import="java.util.*,Culture.*"%>
 
 <html>
+
+
+<script type="text/javascript">
+	function filtra(element) {
+
+		if (element.value == "Musei") {
+			x = document.getElementById("contenitoreMusei");
+			if (x.style.display == "none") {
+				x.style.display = "block";
+			} else if (x.style.display == "block") {
+				x.style.display = "none";
+			}
+		}
+
+		else if (element.value == "Monumenti") {
+			x = document.getElementById("contenitoreMonumenti");
+			if (x.style.display == "none") {
+				x.style.display = "block";
+			} else if (x.style.display == "block") {
+				x.style.display = "none";
+			}
+		}
+
+		else if (element.value == "Librerie") {
+			x = document.getElementById("contenitoreLibrerie");
+			if (x.style.display == "none") {
+				x.style.display = "block";
+			} else if (x.style.display == "block") {
+				x.style.display = "none";
+			}
+		}
+
+		else if (element.value == "Cinema") {
+			x = document.getElementById("contenitoreCinema");
+			if (x.style.display == "none") {
+				x.style.display = "block";
+			} else if (x.style.display == "block") {
+				x.style.display = "none";
+			}
+		}
+
+		else if (element.value == "Concerti") {
+			x = document.getElementById("contenitoreConcerti");
+			if (x.style.display == "none") {
+				x.style.display = "block";
+			} else if (x.style.display == "block") {
+				x.style.display = "none";
+			}
+
+		}
+
+		else if (element.value == "Teatri") {
+			x = document.getElementById("contenitoreTeatri");
+			if (x.style.display == "none") {
+				x.style.display = "block";
+			} else if (x.style.display == "block") {
+				x.style.display = "none";
+			}
+		}
+	}
+</script>
 
 <script>
 	function myFunction() {
@@ -152,36 +218,40 @@
 
 	<div id="topBar">
 		<div id="containerLogo">
-			<img id="logo" src="Immagini/logo.png">
+			<a href="http://localhost:8080/CultureSpot/home"><img id="logo"
+				src="Immagini/logo.png"></a>
 		</div>
-		<div id="description">
-			Su questa piattaforma potrai ricerca tutti i "Culture spot" nella
-			città o <br> provincia che desideri, per iniziare basta
-			compilare il form:
-		</div>
+		<div id="description">Cerca tutti i Culture Spot della città di
+			cui sei interessato</div>
+
 	</div>
 	<div id="corpo">
 
 		<div id="searchBoxContainer">
-			<i id="icon" class="fas fa-search"></i>
+			<!--
+			<i class="fas fa-search" id="iconCerca"></i>
+			-->
 			<form action="home" method="post">
 				<input required name="searchbar" id="searchBox" type="search"
-					placeholder="Cerca... ">
+					placeholder="Inserisci il nome della città...">
 			</form>
 		</div>
-		<br>
+
 		<div id="checkContainer">
 			<div id="suggest">Perfeziona la ricerca...</div>
 			<br> <input id="check2" type="checkbox" name="Musei"
-				value="Musei"> <label> Musei </label> <input id="check"
-				type="checkbox" name="Monumenti" value="Monumenti"> <label>
+				value="Musei" onclick="filtra(this)" checked> <label>
+				Musei </label> <input id="check" type="checkbox" name="Monumenti"
+				value="Monumenti" onclick="filtra(this)" checked> <label>
 				Monumenti </label> <input id="check" type="checkbox" name="Cinema"
-				value="Cinema"> <label> Cinema </label> <input id="check"
-				type="checkbox" name="Teatri" value="Teatri"> <label>
+				value="Cinema" onclick="filtra(this)" checked> <label>
+				Cinema </label> <input id="check" type="checkbox" name="Teatri"
+				value="Teatri" onclick="filtra(this)" checked> <label>
 				Teatri </label> <input id="check" type="checkbox" name="Concerti"
-				value="Concerti"> <label> Concerti </label> <input
-				id="check" type="checkbox" name="Librerie" value="Librerie">
-			<label> Librerie </label>
+				value="Concerti" onclick="filtra(this)" checked> <label>
+				Concerti </label> <input id="check" type="checkbox" name="Librerie"
+				value="Librerie" onclick="filtra(this)" checked><label>
+				Librerie </label>
 		</div>
 
 	</div>
@@ -189,233 +259,369 @@
 
 	<div id="risultati" class="results">
 
-		<p id="tipologia" style="background: #F5F5F5;">
-			<%
-				if (musei != null) {
-			%>
-			Sono stati trovati
-			<%=musei.size()%>
-			<%
-				}
-			%>
-			Musei <a href="javascript:void(0);" onclick="myFunction()"><i
-				class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
-		</p>
+		<div id="contenitoreMusei" style="display: block">
+			<p id="tipologiaMusei">
+				<%
+					if (musei != null) {
+				%>
+				<i class="fas fa-landmark" id="iconaMusei"></i> Trovati
+				<%=musei.size()%>
 
-		<div class="dropdown" id="mydrop">
+				Musei a
+				<%=postoIn%>
+				<%
+					}
+				%>
+				<a href="javascript:void(0);" onclick="myFunction()"><i
+					class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
+			</p>
 
-			<%
-				if (musei != null && musei.size() != 0) {
-					Iterator<?> it = musei.iterator();
-					while (it.hasNext()) {
-						Bean bean = (Bean) it.next();
-			%>
-			<div id="row">
-				<i class="fas fa-landmark" id="iconaMusei"></i><%=bean.getNome()%>
-				<div id="mapButton">
-					<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
+			<div class="dropdown" id="mydrop">
+
+				<%
+					if (musei != null && musei.size() != 0) {
+						Iterator<?> it = musei.iterator();
+						while (it.hasNext()) {
+							Bean bean = (Bean) it.next();
+				%>
+				<div id="row">
+					<i class="fas fa-landmark" id="iconaMusei"></i><%=bean.getNome()%>
+					<div id="mapButton">
+						<a
+							href="map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>">
+
+							<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
+						</a>
+					</div>
 				</div>
+				<br>
+				<%
+					}
+					}
+				%>
 			</div>
-			<br>
-			<%
-				}
-				}
-			%>
-		</div>
-		<p id="tipologia" style="background: #F5F5F5;">
-			<%
-				if (monumenti != null) {
-			%>
-			Sono stati trovati
-			<%=monumenti.size()%>
-			<%
-				}
-			%>
-			Monumenti <a href="javascript:void(0);" onclick="myFunction2()"><i
-				class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
-		</p>
-		<div class="dropdown2" id="mydrop2">
-
-			<%
-				if (monumenti != null && monumenti.size() != 0) {
-					Iterator<?> it = monumenti.iterator();
-					while (it.hasNext()) {
-						Bean bean = (Bean) it.next();
-			%>
-			<div id="row">
-				<i class="fas fa-monument" id="iconaMonumenti"></i><%=bean.getNome()%>
-				<div id="mapButton">
-					<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
-				</div>
-			</div>
-			<br>
-			<%
-				}
-				}
-			%>
 		</div>
 
-		<p id="tipologia" style="background: #F5F5F5;">
-			<%
-				if (librerie != null) {
-			%>
-			Sono stati trovate
-			<%=librerie.size()%>
-			<%
-				}
-			%>
-			Librerie <a href="javascript:void(0);" onclick="myFunction3()"><i
-				class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
-		</p>
-		<div class="dropdown3" id="mydrop3">
+		<div id="contenitoreMonumenti" style="display: block">
+			<p id="tipologiaMonumenti">
+				<%
+					if (monumenti != null) {
+				%>
+				<i class="fas fa-monument" id="iconaMonumenti"></i> Trovati
+				<%=monumenti.size()%>
 
-			<%
-				if (librerie != null && librerie.size() != 0) {
-					Iterator<?> it = librerie.iterator();
-					while (it.hasNext()) {
-						Bean bean = (Bean) it.next();
-			%>
-			<div id="row">
-				<img id="img" src="Immagini/librerie.png" height="60"><%=bean.getNome()%>
-				<div id="mapButton">
-					<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
+				Monumenti a
+				<%=postoIn%>
+				<%
+					}
+				%>
+				<a href="javascript:void(0);" onclick="myFunction2()"><i
+					class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
+			</p>
+			<div class="dropdown2" id="mydrop2">
+
+				<%
+					if (monumenti != null && monumenti.size() != 0) {
+						Iterator<?> it = monumenti.iterator();
+						while (it.hasNext()) {
+							Bean bean = (Bean) it.next();
+				%>
+				<div id="row">
+					<i class="fas fa-monument" id="iconaMonumenti"></i><%=bean.getNome()%>
+					<div id="mapButton">
+						<a
+							href="map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>">
+
+							<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
+						</a>
+					</div>
 				</div>
+				<br>
+				<%
+					}
+					}
+				%>
 			</div>
-			<br>
-			<%
-				}
-				}
-			%>
 		</div>
 
-		<p id="tipologia" style="background: #F5F5F5;">
-			<%
-			if (cinema != null && cinema.size() != 0) {
-		%>
-			Sono stati trovati
-			<%=cinema.size()%> 
+		<div id="contenitoreLibrerie" style="display: block">
+			<p id="tipologiaLibrerie">
+				<%
+					if (librerie != null) {
+				%>
+				<i class="fas fa-book-reader" id="iconaLibrerie"></i>Trovate
+				<%=librerie.size()%>
+
+				Librerie a
+				<%=postoIn%>
+				<%
+					}
+				%>
+				<a href="javascript:void(0);" onclick="myFunction3()"><i
+					class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
+			</p>
+			<div class="dropdown3" id="mydrop3">
+
+				<%
+					if (librerie != null && librerie.size() != 0) {
+						Iterator<?> it = librerie.iterator();
+						while (it.hasNext()) {
+							Bean bean = (Bean) it.next();
+				%>
+				<div id="row">
+					<i class="fas fa-book-reader" id="iconaLibrerie"></i><%=bean.getNome()%>
+					<div id="mapButton">
+						<a
+							href="map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>">
+
+							<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
+						</a>
+					</div>
+				</div>
+				<br>
+				<%
+					}
+					}
+				%>
+			</div>
+		</div>
+
+		<div id="contenitoreCinema" style="display: block">
+			<p id="tipologiaCinema">
+				<%
+					if (cinema != null && cinema.size() != 0) {
+				%>
+				<i class="fas fa-video" id="iconaCinema"></i> Trovati
+				<%=cinema.size()%>
+
+				Cinema a
+				<%=postoIn%>
+				<%
+					} else {
+				%>
+
+				<i class="fas fa-video" id="iconaCinema"></i> Trovati 0 Cinema a
+				<%=postoIn%>
+				<%
+					}
+				%>
+
+
+				<a href="javascript:void(0);" onclick="myFunction4()"><i
+					class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
+			</p>
+
+			<div class="dropdown4" id="mydrop4">
+
+				<%
+					int i = 0;
+					if (cinema != null && cinema.size() != 0) {
+						Iterator<?> it = cinema.iterator();
+						while (it.hasNext()) {
+							Bean bean = (Bean) it.next();
+				%>
+				<div id="row">
+					<i class="fas fa-video" id="iconaCinema"></i><%=bean.getNome()%>
+					<div id="mapButton">
+						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
+					</div>
+
+					<div onclick="mine(<%=i%>)" id="programButton">
+
+						<i class="fas fa-stream" id="iconaFilm"></i> Film
+					</div>
+
+					<div id="myModal" class="modal">
+
+						<div id="popone">
+							<span id="close" class="close">&times;</span>
+
+							<%
+								if (film != null && film.size() != 0) {
+											Iterator<?> ito = film.iterator();
+											while (ito.hasNext()) {
+												FilmBean films = (FilmBean) ito.next();
+												if (films.getNomecinema().equals(bean.getNome())) {
+							%>
+
+							<img id="img" src="<%=films.getLocandina()%>" height="100">
+							<%=films.getFilm()%>
+
+							<%=films.getAnno()%>
+							,
+							<%=films.getGenere()%>
+							,
+							<%=films.getDurata()%>
+							,
+							<%=films.getRegia()%>
+							,
+							<%=films.getNomecinema()%>
+
+
+							<br>
+							<script>
+				var span = document.getElementsByClassName("close")[<%=i%>];
+		</script>
+
+							<%
+								}
+											}
+										}
+							%>
+
+						</div>
+					</div>
+					<script>
 		
-			Cinema
-			<%
-				} else {
-			%>
+// Get the modal
+var modal = document.querySelectorAll("[id='myModal']");
 
-			Sono stati trovati 0 Cinema
-			<%
-				}
-			%>
-		
-			
-			<a href="javascript:void(0);" onclick="myFunction4()"><i
-				class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
-		</p>
-		<div class="dropdown4" id="mydrop4">
+// Get the button that opens the modal
+var btn = document.querySelectorAll("[id='iconaFilm']");
 
-			<%
-				if (cinema != null && cinema.size() != 0) {
-					Iterator<?> it = cinema.iterator();
-					while (it.hasNext()) {
-						Bean bean = (Bean) it.next();
-			%>
-			<div id="row">
-				<img id="img" src="Immagini/cinema.jpg" width="60" height="60"><%=bean.getNome()%>
-				<div id="mapButton">
-					<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
+
+
+// When the user clicks the button, open the modal 
+function mine(x) {
+  modal[x].style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function(){	
+	for (i = 0; i < modal.length; i++) {
+		modal[i].style.display = "none";		
+		}	 
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+	for (i = 0; i < modal.length; i++) {
+		if (event.target == modal[i]) {
+		    modal[i].style.display = "none";
+		  }		}	
+ 
+}
+</script>
+
 				</div>
-				<a
-					href="film?action=read&posto=<%=bean.getProvincia()%>&nomecinema=<%=bean.getNome()%>">Programmazione</a>
-			</div>
-			<br>
-			<%
-				}
-				}
-			%>
-		</div>
-		<p id="tipologia" style="background: #F5F5F5;">
-			<%
-				if (concerti != null) {
-			%>
-			Sono stati trovati
-			<%=concerti.size()%>
-			<%
-				}
-			%>
-			Concerti <a href="javascript:void(0);" onclick="myFunction5()"><i
-				class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
-		</p>
-		<div class="dropdown5" id="mydrop5">
+				<br>
+				<%
+					i++;
+						}
+					}
+				%>
 
-			<%
-				if (concerti != null && concerti.size() != 0) {
-					Iterator<?> it = concerti.iterator();
-					while (it.hasNext()) {
-						Bean bean = (Bean) it.next();
-			%>
-			<div id="row">
-				<img id="img" src="Immagini/concerto.png" height="50"><%=bean.getNome()%>
-				<%=bean.getData()%>,
-				<%=bean.getAddress()%><div id="mapButton">
-					<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
-				</div>
 			</div>
-			<br>
-			<%
-				}
-				}
-			%>
+
+
+
 		</div>
 
-		<p id="tipologia" style="background: #F5F5F5;">
 
-		<%
-			if (teatri != null && teatri.size() != 0) {
-		%>
-			Sono stati trovati
-			<%=teatri.size()%>
-			Teatri
-			<%
-			} else {
-		%>
+		<div id="contenitoreConcerti" style="display: block">
+			<p id="tipologiaConcerti">
+				<%
+					if (concerti != null) {
+				%>
+				<i class="fas fa-microphone-alt" id="iconaConcerti"></i> Trovati
+				<%=concerti.size()%>
 
-			Sono stati trovati 0 Teatri
-			<%
-				}
-			%>
+				Concerti a
+				<%=postoIn%>
+				<%
+					}
+				%>
+				<a href="javascript:void(0);" onclick="myFunction5()"><i
+					class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
+			</p>
+			<div class="dropdown5" id="mydrop5">
 
-			<a href="javascript:void(0);" onclick="myFunction6()"><i
-				class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
-		</p>
-		<div class="dropdown6" id="mydrop6">
-
-			<%
-				if (teatri != null && teatri.size() != 0) {
-					Iterator<?> it = teatri.iterator();
-					while (it.hasNext()) {
-						Bean bean = (Bean) it.next();
-			%>
-			<div id="row">
-				<img id="img" src="Immagini/teatro.jpg" height="50"><%=bean.getNome()%>
-				<a
-					href="film?action=teatro&posto=<%=bean.getProvincia()%>&nomecinema=<%=bean.getNome()%>">Programmazione</a>
-				<div id="mapButton">
-					<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
-					
+				<%
+					if (concerti != null && concerti.size() != 0) {
+						Iterator<?> it = concerti.iterator();
+						while (it.hasNext()) {
+							Bean bean = (Bean) it.next();
+				%>
+				<div id="row">
+					<i class="fas fa-microphone-alt" id="iconaConcerti"></i>
+					<%=bean.getNome()%>
+					<%=bean.getData()%>,
+					<%=bean.getAddress()%>
+					<div id="mapButton">
+						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
+					</div>
 				</div>
+				<br>
+				<%
+					}
+					}
+				%>
 			</div>
-			<br>
-			<%
-				}
-				}
-			%>
+		</div>
+
+		<div id="contenitoreTeatri" style="display: block">
+			<p id="tipologiaTeatri">
+				<%
+					if (teatri != null && teatri.size() != 0) {
+				%>
+				<i class="fas fa-theater-masks" id="iconaTeatri"></i> Trovati
+				<%=teatri.size()%>
+				Teatri a
+				<%=postoIn%>
+				<%
+					} else {
+				%>
+
+				<i class="fas fa-theater-masks" id="iconaTeatri"></i> Trovati 0
+				Teatri a
+				<%=postoIn%>
+				<%
+					}
+				%>
+
+				<a href="javascript:void(0);" onclick="myFunction6()"><i
+					class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
+			</p>
+			<div class="dropdown6" id="mydrop6">
+
+				<%
+					if (teatri != null && teatri.size() != 0) {
+						Iterator<?> it = teatri.iterator();
+						while (it.hasNext()) {
+							Bean bean = (Bean) it.next();
+				%>
+				<div id="row">
+					<i class="fas fa-theater-masks" id="iconaTeatri"></i><%=bean.getNome()%>
+
+					<div id="mapButton">
+						<a
+							href="map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>">
+
+							<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
+						</a>
+					</div>
+					<div id="programButton">
+
+						<a
+							href="home?action=teatro&posto=<%=bean.getProvincia()%>&nomecinema=<%=bean.getNome()%>">
+							<i class="fas fa-stream" id="iconaFilm"></i>Spettacoli
+						</a>
+					</div>
+
+				</div>
+				<br>
+				<%
+					}
+					}
+				%>
+			</div>
 		</div>
 	</div>
 
 	<footer>
-
 		<h3 id="copyright">Copyright &#169; 2019 by Gerardo De Rosa &
 			Gianluca Annunziata</h3>
 	</footer>
-
 </body>
 
 </html>

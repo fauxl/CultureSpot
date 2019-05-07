@@ -42,7 +42,7 @@ public class FilmProvider extends HttpServlet {
 		request.setAttribute("spettacoli", SpectacleWrapper.Wrapper(posto,cinema));
 		}
 			}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/film.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/home.jsp");
 		dispatcher.forward(request, response);
 	}
 
