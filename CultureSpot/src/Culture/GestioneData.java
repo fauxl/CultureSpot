@@ -63,29 +63,45 @@ public class GestioneData extends HttpServlet {
 			request.removeAttribute("film");
 			request.removeAttribute("cinema");
 			request.removeAttribute("concerti");
+			request.removeAttribute("film");
+			request.removeAttribute("spettacoli");
 			request.removeAttribute("teatri");
 			
 			Collection<?> cinema = (Collection<?>) CinemaWrapper.Wrapper(posto);
-			Collection<FilmBean> film=  new LinkedList<FilmBean>();
+			Collection<FilmBean> film =  new LinkedList<FilmBean>();
 
 			if (cinema != null && cinema.size() != 0) {
 				Iterator<?> it = cinema.iterator();
 				while (it.hasNext()) {
 					Bean bean = (Bean) it.next();	
-					if (film!=null) {
-					film.addAll(FilmWrapper.Wrapper(posto,bean.getNome()));
+					if (film != null) {
+						film.addAll(FilmWrapper.Wrapper(posto,bean.getNome()));
+					}
+				}
+				}
+			
+			Collection<?> teatri = (Collection<?>) TheaterWrapper.Wrapper(posto);
+			Collection<TheatreBean> spettacoli =  new LinkedList<TheatreBean>();
+
+			if (teatri != null && teatri.size() != 0) {
+				Iterator<?> it = teatri.iterator();
+				while (it.hasNext()) {
+					Bean bean = (Bean) it.next();	
+					if (spettacoli != null) {
+						spettacoli.addAll(SpectacleWrapper.Wrapper(posto,bean.getNome()));
 					}
 				}
 				}
 				
 			request.setAttribute("film", film);
+			request.setAttribute("spettacoli", spettacoli);
 			request.setAttribute("musei", model.doRetrieveByKeyMuseo(posto));
 			request.setAttribute("librerie", LibraryWrapper.Wrapper(posto));
-			request.setAttribute("cinema", CinemaWrapper.Wrapper(posto));
+			request.setAttribute("cinema", cinema);
 			request.setAttribute("monumenti", model.doRetrieveByKeyMonumento(posto));
 			request.setAttribute("concerti", ConcertWrapper.Wrapper(posto));
 			// request.setAttribute("teatri", null); //
-			request.setAttribute("teatri", TheaterWrapper.Wrapper(posto));
+			request.setAttribute("teatri", teatri);
 			request.setAttribute("postoOut", posto); 
 
 

@@ -28,7 +28,7 @@ public class TheaterWrapper {
 
 			for(j=1;j<40;j++) {
 
-				URL url = new URL("https://www.teatro.it/teatri/?city="+cerca+"&order_by=alpha&page="+j);
+				URL url = new URL("https://www.teatro.it/teatri/?city="+cerca+"&order_by=more_sits&page="+j);
 
 				URLConnection con = url.openConnection();
 				con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
@@ -81,15 +81,15 @@ public class TheaterWrapper {
 							//System.out.println(virgola);
 
 						bean.setLongi(Float.parseFloat(map.getCoordinates(posto.substring(0, in3)).toString().substring(5, virgola)));
-						bean.setLati(Float.parseFloat(map.getCoordinates(posto.substring(0, in3)).toString().substring(virgola+6,map.getCoordinates(posto.substring(0, in3)).toString().length()-1 )));
-					//	System.out.println(Float.parseFloat(map.getCoordinates(posto.substring(0, in3)).toString().substring(5, virgola)));
+						bean.setLati(Float.parseFloatloa(map.getCoordinates(posto.substring(0, in3)).toString().substring(virgola+6,map.getCoordinates(posto.substring(0, in3)).toString().length()-1 )));
+					//	System.out.println(Float.parseFt(map.getCoordinates(posto.substring(0, in3)).toString().substring(5, virgola)));
 						//System.out.println(Float.parseFloat(map.getCoordinates(posto.substring(0, in3)).toString().substring(virgola+6,map.getCoordinates(posto.substring(0, in3)).toString().length() -1)));
 						}*/
 						bean.setProvincia(cerca);
 						musei.add(bean);
 						//  	System.out.println(musei);
 					
-						if(bean.getNome().equals("") && bean.getAddress().equals("")) {
+						if(in1== -1) {
 							j=39;
 						}
 					}

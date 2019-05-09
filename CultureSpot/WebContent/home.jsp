@@ -6,7 +6,7 @@
 	Collection<?> librerie = (Collection<?>) request.getAttribute("librerie");
 	Collection<?> cinema = (Collection<?>) request.getAttribute("cinema");
 	Collection<?> film = (Collection<?>) request.getAttribute("film");
-
+	Collection<?> spettacoli = (Collection<?>) request.getAttribute("spettacoli");
 	Collection<?> concerti = (Collection<?>) request.getAttribute("concerti");
 	Collection<?> teatri = (Collection<?>) request.getAttribute("teatri");
 	String postoIn = (String) request.getAttribute("postoOut");
@@ -21,7 +21,23 @@
 
 <html>
 
+<script>
+function chiudi(){    
+    for (i = 0; i < modal.length; i++) {
+		    modal[i].style.display = "none";
+		  		}	
+	for (i = 0; i < modal2.length; i++) {
+		    modal2[i].style.display = "none";
+		  		}	
+	for (i = 0; i < modal3.length; i++) {
+		    modal3[i].style.display = "none";
+		  		}	
+	for (i = 0; i < modal4.length; i++) {
+		    modal4[i].style.display = "none";
+		  		}
+}
 
+</script>
 <script type="text/javascript">
 	function filtra(element) {
 
@@ -212,6 +228,7 @@
 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
 	crossorigin="anonymous">
 
+
 </head>
 
 <body>
@@ -221,7 +238,7 @@
 			<a href="http://localhost:8080/CultureSpot/home"><img id="logo"
 				src="Immagini/logo.png"></a>
 		</div>
-		<div id="description">Cerca tutti i Culture Spot della città di
+		<div id="description">Cerca tutti i Culture Spot del luogo di
 			cui sei interessato</div>
 
 	</div>
@@ -279,24 +296,38 @@
 			<div class="dropdown" id="mydrop">
 
 				<%
+					int y = 0;
 					if (musei != null && musei.size() != 0) {
 						Iterator<?> it = musei.iterator();
 						while (it.hasNext()) {
 							Bean bean = (Bean) it.next();
 				%>
+
 				<div id="row">
 					<i class="fas fa-landmark" id="iconaMusei"></i><%=bean.getNome()%>
-					<div id="mapButton">
-						<a
-							href="map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>">
+					<div onclick="mine2(<%=y%>)" id="programButton">
 
-							<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
-						</a>
+						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
 					</div>
+					<div id="myModal2" class="modal">
+						<div id="mappa">
+							<div id="barraSuperiore">
+								<span id="close" class="close" onclick="chiudi()"> <i
+									class="fas fa-times" style="margin: auto;"></i></span>Mappa:
+								<%=bean.getNome()%></div>
+
+							<iframe
+								src="http://localhost:8080/CultureSpot/map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>"></iframe>
+
+						</div>
+					</div>
+
 				</div>
+
 				<br>
 				<%
-					}
+					y++;
+						}
 					}
 				%>
 			</div>
@@ -321,24 +352,38 @@
 			<div class="dropdown2" id="mydrop2">
 
 				<%
+					int m = 0;
 					if (monumenti != null && monumenti.size() != 0) {
 						Iterator<?> it = monumenti.iterator();
 						while (it.hasNext()) {
 							Bean bean = (Bean) it.next();
 				%>
+
 				<div id="row">
 					<i class="fas fa-monument" id="iconaMonumenti"></i><%=bean.getNome()%>
-					<div id="mapButton">
-						<a
-							href="map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>">
+					<div onclick="mine3(<%=m%>)" id="programButton">
 
-							<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
-						</a>
+						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
 					</div>
+					<div id="myModal3" class="modal">
+						<div id="mappa">
+							<div id="barraSuperiore">
+								<span id="close" class="close" onclick="chiudi()"><i
+									class="fas fa-times" style="margin: auto;"></i></span>Mappa:
+								<%=bean.getNome()%></div>
+
+							<iframe
+								src="http://localhost:8080/CultureSpot/map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>"></iframe>
+
+						</div>
+					</div>
+
 				</div>
+
 				<br>
 				<%
-					}
+					m++;
+						}
 					}
 				%>
 			</div>
@@ -427,15 +472,16 @@
 					</div>
 
 					<div onclick="mine(<%=i%>)" id="programButton">
-
 						<i class="fas fa-stream" id="iconaFilm"></i> Film
 					</div>
 
 					<div id="myModal" class="modal">
-
-						<div id="popone">
-							<span id="close" class="close">&times;</span>
-
+						<div id="dettagli">
+							<div id="barraSuperiore">
+								<span id="close" class="close" onclick="chiudi()"><i
+									class="fas fa-times" style="margin: auto;"></i></span>Spettacoli al
+								cinema
+								<%=bean.getNome()%></div>
 							<%
 								if (film != null && film.size() != 0) {
 											Iterator<?> ito = film.iterator();
@@ -444,24 +490,21 @@
 												if (films.getNomecinema().equals(bean.getNome())) {
 							%>
 
-							<img id="img" src="<%=films.getLocandina()%>" height="100">
-							<%=films.getFilm()%>
+							<img id="img" src="<%=films.getLocandina()%>">
+							<div id="dettagliFilm">
+								<span id="inGrassetto">Film: </span>
+								<%=films.getFilm()%>
+								<br> <span id="inGrassetto">Anno: </span>
+								<%=films.getAnno()%>
+								<br> <span id="inGrassetto">Genere: </span>
+								<%=films.getGenere()%>
+								<br> <span id="inGrassetto">Durata: </span>
+								<%=films.getDurata()%>
+								<br> <span id="inGrassetto">Regia: </span>
+								<%=films.getRegia()%>
 
-							<%=films.getAnno()%>
-							,
-							<%=films.getGenere()%>
-							,
-							<%=films.getDurata()%>
-							,
-							<%=films.getRegia()%>
-							,
-							<%=films.getNomecinema()%>
-
-
+							</div>
 							<br>
-							<script>
-				var span = document.getElementsByClassName("close")[<%=i%>];
-		</script>
 
 							<%
 								}
@@ -471,37 +514,6 @@
 
 						</div>
 					</div>
-					<script>
-		
-// Get the modal
-var modal = document.querySelectorAll("[id='myModal']");
-
-// Get the button that opens the modal
-var btn = document.querySelectorAll("[id='iconaFilm']");
-
-
-
-// When the user clicks the button, open the modal 
-function mine(x) {
-  modal[x].style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function(){	
-	for (i = 0; i < modal.length; i++) {
-		modal[i].style.display = "none";		
-		}	 
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-	for (i = 0; i < modal.length; i++) {
-		if (event.target == modal[i]) {
-		    modal[i].style.display = "none";
-		  }		}	
- 
-}
-</script>
 
 				</div>
 				<br>
@@ -512,7 +524,6 @@ window.onclick = function(event) {
 				%>
 
 			</div>
-
 
 
 		</div>
@@ -585,6 +596,7 @@ window.onclick = function(event) {
 			<div class="dropdown6" id="mydrop6">
 
 				<%
+					int t=0;
 					if (teatri != null && teatri.size() != 0) {
 						Iterator<?> it = teatri.iterator();
 						while (it.hasNext()) {
@@ -600,22 +612,110 @@ window.onclick = function(event) {
 							<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
 						</a>
 					</div>
-					<div id="programButton">
+					<div onclick="mine4(<%=t%>)" id="programButton">
+						<i class="fas fa-stream" id="iconaFilm"></i> Film
+					</div>
 
-						<a
-							href="home?action=teatro&posto=<%=bean.getProvincia()%>&nomecinema=<%=bean.getNome()%>">
-							<i class="fas fa-stream" id="iconaFilm"></i>Spettacoli
-						</a>
+					<div id="myModal4" class="modal">
+						<div id="dettagli">
+							<div id="barraSuperiore">
+								<span id="close" class="close" onclick="chiudi()"><i
+									class="fas fa-times" style="margin: auto;"></i></span>Spettacoli al
+								teatro
+								<%=bean.getNome()%></div>
+							<%
+								if (spettacoli != null && spettacoli.size() != 0) {
+											Iterator<?> ito = spettacoli.iterator();
+											while (ito.hasNext()) {
+												TheatreBean specs = (TheatreBean) ito.next();
+												if (specs.getNometeatro().equals(bean.getNome())) {
+							%>
+
+							<img id="img" src="<%=specs.getLocandina()%>">
+							<div id="dettagliFilm">
+								<span id="inGrassetto">Film: </span>
+								<%=specs.getSpettacolo()%>
+								<br> <span id="inGrassetto">Data: </span>
+								<%=specs.getData()%>
+								<br> <span id="inGrassetto">Autore: </span>
+								<%=specs.getAutore()%>
+								<br> <span id="inGrassetto">Produttore: </span>
+								<%=specs.getProduttore()%>
+								<br> <span id="inGrassetto">Regia: </span>
+								<%=specs.getRegia()%>
+								<br> <span id="inGrassetto">Protagonista/i: </span>
+								<%=specs.getProtagonista()%>
+							</div>
+							<br>
+
+							<%
+								}
+											}
+										}
+							%>
+
+						</div>
 					</div>
 
 				</div>
 				<br>
 				<%
-					}
+					t++;}
 					}
 				%>
 			</div>
 		</div>
+		<script>
+		
+// Get the modal
+var modal = document.querySelectorAll("[id='myModal']");
+var modal2 = document.querySelectorAll("[id='myModal2']");
+var modal3 = document.querySelectorAll("[id='myModal3']");
+var modal4 = document.querySelectorAll("[id='myModal4']");
+var span = document.querySelectorAll("[id='close']");
+
+// When the user clicks the button, open the modal 
+function mine(x) {
+
+  modal[x].style.display = "block";
+
+}
+
+function mine2(x) {
+	  modal2[x].style.display = "block";
+		
+}
+
+function mine3(x) {
+	  modal3[x].style.display = "block";
+
+}
+
+function mine4(x) {
+	  modal4[x].style.display = "block";
+
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+	for (i = 0; i < modal.length; i++) {
+		if (event.target == modal[i]) {
+		    modal[i].style.display = "none";
+		  }		}	
+	for (i = 0; i < modal2.length; i++) {
+		if (event.target == modal2[i]) {
+		    modal2[i].style.display = "none";
+		  }		}	
+	for (i = 0; i < modal3.length; i++) {
+		if (event.target == modal3[i]) {
+		    modal3[i].style.display = "none";
+		  }		}	
+	for (i = 0; i < modal4.length; i++) {
+		if (event.target == modal4[i]) {
+		    modal4[i].style.display = "none";
+		  }		}
+}
+</script>
+
 	</div>
 
 	<footer>

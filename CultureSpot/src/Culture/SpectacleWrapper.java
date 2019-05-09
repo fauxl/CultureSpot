@@ -39,7 +39,7 @@ public class SpectacleWrapper {
 
 			try {  
 
-				String searchUrl = "https://www.teatro.it/teatri/?city="+code+"&order_by=alpha&page="+j;
+				String searchUrl = "https://www.teatro.it/teatri/?city="+code+"&order_by=more_sits&order_by=alpha&page="+j;
 				page = client.getPage(searchUrl);
 			}catch(Exception e){
 				e.printStackTrace();
@@ -52,14 +52,17 @@ public class SpectacleWrapper {
 				//  System.out.println(posti.size());	
 				for(HtmlAnchor spettacoli: posti){
 					if(spettacoli.getTextContent().contains(teatro)) {
+						j=39;
 						System.out.println(spettacoli.getTextContent());
 						try {  
 							String searchUrl2 = spettacoli.getHrefAttribute();
 							page = client.getPage(searchUrl2);
+							
 						}catch(Exception e){
 							e.printStackTrace();
 						}
-
+					}}}}
+					
 						List<HtmlElement> nspec = page.getByXPath("//div[@class='row show_layout_5 m-bottom-40']");
 						if(nspec.isEmpty()){  
 							System.out.println("No items found !");
@@ -86,14 +89,6 @@ public class SpectacleWrapper {
 								i++;
 							}							
 
-						}
-					}  
-
-
-
-
-				}
-			}
 
 		}
 		return spect;

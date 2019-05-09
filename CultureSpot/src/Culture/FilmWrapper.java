@@ -40,11 +40,10 @@ public class FilmWrapper {
 				String line = null;
 				String code=arg;
 				String nomecinema =ncinema;
-				/*if(arg!=null) {
+				if(arg!=null) {
 					code = arg.toLowerCase();
-					if(code.contains(" ")) {
-						code =	code.replace(" ", "-");
-					}*/
+
+					}
 
 					Collection<Bean> musei = new LinkedList<Bean>();		
 					Collection<FilmBean> film = new LinkedList<FilmBean>();
@@ -93,6 +92,7 @@ public class FilmWrapper {
 						}}
 
 			List<HtmlAnchor> posti = page.getByXPath("//div[@class='mm-menu-colonnina']/a");
+			
 			if(posti.isEmpty()){  
 				  System.out.println("No items found !");
 				}else{
