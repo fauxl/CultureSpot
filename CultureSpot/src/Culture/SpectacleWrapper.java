@@ -39,7 +39,7 @@ public class SpectacleWrapper {
 
 			try {  
 
-				String searchUrl = "https://www.teatro.it/teatri/?city="+code+"&order_by=more_sits&order_by=alpha&page="+j;
+				String searchUrl = "https://www.teatro.it/teatri/?city="+code+"&order_by=more_sits&page="+j;
 				page = client.getPage(searchUrl);
 			}catch(Exception e){
 				e.printStackTrace();
@@ -48,6 +48,7 @@ public class SpectacleWrapper {
 			List<HtmlAnchor> posti = page.getByXPath("//h3[@class=\"post-title title-large\"]/a");
 			if(posti.isEmpty()){  
 				System.out.println("No items found !");
+				j=39;
 			}else{
 				//  System.out.println(posti.size());	
 				for(HtmlAnchor spettacoli: posti){

@@ -35,6 +35,19 @@ function chiudi(){
 	for (i = 0; i < modal4.length; i++) {
 		    modal4[i].style.display = "none";
 		  		}
+	for (i = 0; i < modal5.length; i++) {
+	    modal5[i].style.display = "none";
+	  		}
+	for (i = 0; i < modal6.length; i++) {
+	    modal6[i].style.display = "none";
+	  		}
+for (i = 0; i < modal7.length; i++) {
+    modal7[i].style.display = "none";
+  		}
+	
+	for (i = 0; i < modal8.length; i++) {
+	    modal8[i].style.display = "none";
+	  		}
 }
 
 </script>
@@ -245,13 +258,14 @@ function chiudi(){
 	<div id="corpo">
 
 		<div id="searchBoxContainer">
-			<!--
-			<i class="fas fa-search" id="iconCerca"></i>
-			-->
+
 			<form action="home" method="post">
-				<input required name="searchbar" id="searchBox" type="search"
-					placeholder="Inserisci il nome della città...">
+				<input required name="searchbar" id="searchBox" 
+					placeholder="Inserisci il nome della città..."> <i
+					class="fas fa-search" id="iconCerca"></i>
 			</form>
+
+
 		</div>
 
 		<div id="checkContainer">
@@ -260,15 +274,16 @@ function chiudi(){
 				value="Musei" onclick="filtra(this)" checked> <label>
 				Musei </label> <input id="check" type="checkbox" name="Monumenti"
 				value="Monumenti" onclick="filtra(this)" checked> <label>
-				Monumenti </label> <input id="check" type="checkbox" name="Cinema"
-				value="Cinema" onclick="filtra(this)" checked> <label>
-				Cinema </label> <input id="check" type="checkbox" name="Teatri"
-				value="Teatri" onclick="filtra(this)" checked> <label>
-				Teatri </label> <input id="check" type="checkbox" name="Concerti"
-				value="Concerti" onclick="filtra(this)" checked> <label>
-				Concerti </label> <input id="check" type="checkbox" name="Librerie"
+				Monumenti </label> <input id="check" type="checkbox" name="Librerie"
 				value="Librerie" onclick="filtra(this)" checked><label>
-				Librerie </label>
+				Librerie </label> <input id="check" type="checkbox" name="Cinema"
+				value="Cinema" onclick="filtra(this)" checked> <label>
+				Cinema </label> <input id="check" type="checkbox" name="Concerti"
+				value="Concerti" onclick="filtra(this)" checked> <label>
+				Concerti </label> <input id="check" type="checkbox" name="Teatri"
+				value="Teatri" onclick="filtra(this)" checked> <label>
+				Teatri </label>
+
 		</div>
 
 	</div>
@@ -317,7 +332,8 @@ function chiudi(){
 								<%=bean.getNome()%></div>
 
 							<iframe
-								src="http://localhost:8080/CultureSpot/map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>"></iframe>
+								src="https://maps.google.com/maps?;hl=en&amp;q=@<%=bean.getLati()%>,<%=bean.getLongi()%>&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+								frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 
 						</div>
 					</div>
@@ -373,8 +389,8 @@ function chiudi(){
 								<%=bean.getNome()%></div>
 
 							<iframe
-								src="http://localhost:8080/CultureSpot/map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>"></iframe>
-
+								src="https://maps.google.com/maps?;hl=en&amp;q=@<%=bean.getLati()%>,<%=bean.getLongi()%>&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+								frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 						</div>
 					</div>
 
@@ -408,6 +424,7 @@ function chiudi(){
 			<div class="dropdown3" id="mydrop3">
 
 				<%
+					int j = 0;
 					if (librerie != null && librerie.size() != 0) {
 						Iterator<?> it = librerie.iterator();
 						while (it.hasNext()) {
@@ -415,17 +432,28 @@ function chiudi(){
 				%>
 				<div id="row">
 					<i class="fas fa-book-reader" id="iconaLibrerie"></i><%=bean.getNome()%>
-					<div id="mapButton">
-						<a
-							href="map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>">
+					<div onclick="mine5(<%=j%>)" id="programButton">
 
-							<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
-						</a>
+						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
 					</div>
+					<div id="myModal5" class="modal">
+						<div id="mappa">
+							<div id="barraSuperiore">
+								<span id="close" class="close" onclick="chiudi()"><i
+									class="fas fa-times" style="margin: auto;"></i></span>Mappa:
+								<%=bean.getNome()%></div>
+
+							<iframe
+								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=<%=bean.getAddress()%>%2C%20Italy+(<%=bean.getNome()%>)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+								frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+						</div>
+					</div>
+
 				</div>
 				<br>
 				<%
-					}
+					j++;
+						}
 					}
 				%>
 			</div>
@@ -467,8 +495,20 @@ function chiudi(){
 				%>
 				<div id="row">
 					<i class="fas fa-video" id="iconaCinema"></i><%=bean.getNome()%>
-					<div id="mapButton">
+					<div onclick="mine6(<%=i%>)" id="programButton">
+
 						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
+					</div>
+					<div id="myModal6" class="modal">
+						<div id="mappa">
+							<div id="barraSuperiore">
+								<span id="close" class="close" onclick="chiudi()"><i
+									class="fas fa-times" style="margin: auto;"></i></span>Mappa:
+								<%=bean.getNome()%></div>
+
+							<iframe
+								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=Cinema <%=bean.getNome()%>%2C%20<%=bean.getProvincia()%>+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"></iframe>
+						</div>
 					</div>
 
 					<div onclick="mine(<%=i%>)" id="programButton">
@@ -545,26 +585,42 @@ function chiudi(){
 				<a href="javascript:void(0);" onclick="myFunction5()"><i
 					class="fas fa-arrow-circle-down" id="apriRisultati"></i> </a>
 			</p>
-			<div class="dropdown5" id="mydrop5">
 
+			<div class="dropdown5" id="mydrop5">
 				<%
+					i = 0;
 					if (concerti != null && concerti.size() != 0) {
 						Iterator<?> it = concerti.iterator();
 						while (it.hasNext()) {
 							Bean bean = (Bean) it.next();
 				%>
-				<div id="row">
-					<i class="fas fa-microphone-alt" id="iconaConcerti"></i>
+				<div id="rowConc">
+					<i class="fas fa-microphone-alt" id="iconaConcerti1"></i>
 					<%=bean.getNome()%>
 					<%=bean.getData()%>,
 					<%=bean.getAddress()%>
-					<div id="mapButton">
+					<div onclick="mine7(<%=i%>)" id="programButton">
+
 						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
+					</div>
+					<div id="myModal7" class="modal">
+						<div id="mappa">
+							<div id="barraSuperiore">
+								<span id="close" class="close" onclick="chiudi()"><i
+									class="fas fa-times" style="margin: auto;"></i></span>Mappa per il
+								concerto:
+								<%=bean.getNome()%></div>
+
+							<iframe
+								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=<%=bean.getAddress()%>%2C%20<%=bean.getProvincia()%>+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+								frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+						</div>
 					</div>
 				</div>
 				<br>
 				<%
-					}
+					i++;
+						}
 					}
 				%>
 			</div>
@@ -596,7 +652,7 @@ function chiudi(){
 			<div class="dropdown6" id="mydrop6">
 
 				<%
-					int t=0;
+					int t = 0;
 					if (teatri != null && teatri.size() != 0) {
 						Iterator<?> it = teatri.iterator();
 						while (it.hasNext()) {
@@ -605,15 +661,25 @@ function chiudi(){
 				<div id="row">
 					<i class="fas fa-theater-masks" id="iconaTeatri"></i><%=bean.getNome()%>
 
-					<div id="mapButton">
-						<a
-							href="map.jsp?lati=<%=bean.getLati()%>&longi=<%=bean.getLongi()%>">
+					<div onclick="mine8(<%=t%>)" id="programButton">
 
-							<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
-						</a>
+						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
 					</div>
+					<div id="myModal8" class="modal">
+						<div id="mappa">
+							<div id="barraSuperiore">
+								<span id="close" class="close" onclick="chiudi()"><i
+									class="fas fa-times" style="margin: auto;"></i></span>Mappa:
+								<%=bean.getNome()%></div>
+
+							<iframe
+								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=<%=bean.getAddress()%>%2C%20Teatro <%=bean.getNome()%>)%2C%20Italy+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+								frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+						</div>
+					</div>
+
 					<div onclick="mine4(<%=t%>)" id="programButton">
-						<i class="fas fa-stream" id="iconaFilm"></i> Film
+						<i class="fas fa-stream" id="iconaFilm"></i> Spettacoli
 					</div>
 
 					<div id="myModal4" class="modal">
@@ -660,7 +726,8 @@ function chiudi(){
 				</div>
 				<br>
 				<%
-					t++;}
+					t++;
+						}
 					}
 				%>
 			</div>
@@ -672,6 +739,11 @@ var modal = document.querySelectorAll("[id='myModal']");
 var modal2 = document.querySelectorAll("[id='myModal2']");
 var modal3 = document.querySelectorAll("[id='myModal3']");
 var modal4 = document.querySelectorAll("[id='myModal4']");
+var modal5 = document.querySelectorAll("[id='myModal5']");
+var modal6 = document.querySelectorAll("[id='myModal6']");
+var modal7 = document.querySelectorAll("[id='myModal7']");
+var modal8 = document.querySelectorAll("[id='myModal8']");
+
 var span = document.querySelectorAll("[id='close']");
 
 // When the user clicks the button, open the modal 
@@ -695,6 +767,24 @@ function mine4(x) {
 	  modal4[x].style.display = "block";
 
 }
+
+function mine5(x) {
+	  modal5[x].style.display = "block";
+
+}
+
+function mine6(x) {
+	  modal6[x].style.display = "block";
+
+}
+function mine7(x) {
+	  modal7[x].style.display = "block";
+
+}
+function mine8(x) {
+	  modal8[x].style.display = "block";
+
+}
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
 	for (i = 0; i < modal.length; i++) {
@@ -712,6 +802,22 @@ window.onclick = function(event) {
 	for (i = 0; i < modal4.length; i++) {
 		if (event.target == modal4[i]) {
 		    modal4[i].style.display = "none";
+		  }		}
+	for (i = 0; i < modal5.length; i++) {
+		if (event.target == modal5[i]) {
+		    modal5[i].style.display = "none";
+		  }		}
+	for (i = 0; i < modal6.length; i++) {
+		if (event.target == modal6[i]) {
+		    modal6[i].style.display = "none";
+		  }		}
+	for (i = 0; i < modal7.length; i++) {
+		if (event.target == modal7[i]) {
+		    modal7[i].style.display = "none";
+		  }		}
+	for (i = 0; i < modal8.length; i++) {
+		if (event.target == modal8[i]) {
+		    modal8[i].style.display = "none";
 		  }		}
 }
 </script>

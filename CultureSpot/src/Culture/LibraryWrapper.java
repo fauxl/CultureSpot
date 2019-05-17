@@ -76,20 +76,10 @@ public class LibraryWrapper {
 									yes = true;
 
 									bean.setAddress(line2.substring(11,in4));						
-									Mappa map =Mappa.getInstance();
 
 //									System.out.println(map.getCoordinates((line2.substring(11,in4)+" "+arg).toString()));
 
-								/*	if(!map.getCoordinates(line2.substring(11,in4)+" "+arg).toString().equalsIgnoreCase("{}")) {
-										System.out.println(map.getCoordinates((line2.substring(11,in4)+" "+arg).toString()));
-										int virgola = map.getCoordinates(line2.substring(11,in4)+" "+arg).toString().indexOf(",");
-										System.out.println(virgola);
-
-									bean.setLongi(Float.parseFloat(map.getCoordinates(line2.substring(11,in4)+" "+arg).toString().substring(5, virgola)));
-									bean.setLati(Float.parseFloat(map.getCoordinates(line2.substring(11,in4)+" "+arg).toString().substring(virgola+6,map.getCoordinates(line2.substring(11,in4)+" "+arg).toString().length()-1 )));
-									System.out.println(Float.parseFloat(map.getCoordinates(line2.substring(11,in4)+" "+arg).toString().substring(5, virgola)));
-									System.out.println(Float.parseFloat(map.getCoordinates(line2.substring(11,in4)+" "+arg).toString().substring(virgola+6,map.getCoordinates(line2.substring(11,in4)+" "+arg).toString().length() -1)));
-									}*/
+							
 									musei.add(bean);
 									//     System.out.println(bean.toString());
 								}}

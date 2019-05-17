@@ -119,9 +119,14 @@ public class FilmWrapper {
 		List<HtmlElement> itemss = page.getByXPath("//ul[@class='mm-ul']/li");
 		if(itemss.isEmpty()){  
 		  System.out.println("No items found !");
+		  return null;
 		}else{
 			  System.out.println(itemss.size());	
 			  List<DomAttr>  ref =  page.getByXPath("//section[@class=\"mm-hide-md mm-show-xs\"]/div/amp-img/@src");
+			  if(ref.isEmpty()){  
+				  System.out.println("No items found !");
+				  return null;
+				}else{
 			  for(DomAttr logo: ref){
 			
 				  System.out.println(logo.toString().substring(23,logo.toString().length()-1));	
@@ -156,7 +161,7 @@ public class FilmWrapper {
 					}
 					}
 				}
-		}
+		}}
 		
 }
 	return film;

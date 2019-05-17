@@ -38,25 +38,7 @@ public class GestioneData extends HttpServlet {
 		String posto = request.getParameter("searchbar");
 
 		try {
-			String action = request.getParameter("action");
 
-			if (action != null) {
-				
-				String posto2 = request.getParameter("posto");
-				if (action.equalsIgnoreCase("read")) {
-				
-			String cinema = request.getParameter("nomecinema");
-			request.removeAttribute("film");
-			request.setAttribute("film", FilmWrapper.Wrapper(posto2,cinema));
-				}
-			if (action.equalsIgnoreCase("teatro")) {
-				String cinema = request.getParameter("nomecinema");
-			request.removeAttribute("spettacolo");
-			request.setAttribute("spettacoli", SpectacleWrapper.Wrapper(posto2,cinema));
-			}
-			
-			
-				}
 			request.removeAttribute("musei");
 			request.removeAttribute("monumento");
 			request.removeAttribute("librerie");
@@ -74,27 +56,31 @@ public class GestioneData extends HttpServlet {
 				Iterator<?> it = cinema.iterator();
 				while (it.hasNext()) {
 					Bean bean = (Bean) it.next();	
-					if (film != null) {
-						film.addAll(FilmWrapper.Wrapper(posto,bean.getNome()));
+					if (cinema != null) {
+						Collection<FilmBean> films = FilmWrapper.Wrapper(posto,bean.getNome());
+						if(films !=null){
+						film.addAll(films);
 					}
 				}
-				}
+				}}
 			
 			Collection<?> teatri = (Collection<?>) TheaterWrapper.Wrapper(posto);
-			Collection<TheatreBean> spettacoli =  new LinkedList<TheatreBean>();
+		/*	Collection<TheatreBean> spettacoli =  new LinkedList<TheatreBean>();
 
 			if (teatri != null && teatri.size() != 0) {
 				Iterator<?> it = teatri.iterator();
 				while (it.hasNext()) {
 					Bean bean = (Bean) it.next();	
-					if (spettacoli != null) {
-						spettacoli.addAll(SpectacleWrapper.Wrapper(posto,bean.getNome()));
-					}
+					if (teatri != null) {
+						Collection<TheatreBean> spectacles = SpectacleWrapper.Wrapper(posto,bean.getNome());
+						if(spectacles !=null){
+						spettacoli.addAll(spectacles);
+					}}
 				}
-				}
+				}*/
 				
 			request.setAttribute("film", film);
-			request.setAttribute("spettacoli", spettacoli);
+			request.setAttribute("spettacoli", null);
 			request.setAttribute("musei", model.doRetrieveByKeyMuseo(posto));
 			request.setAttribute("librerie", LibraryWrapper.Wrapper(posto));
 			request.setAttribute("cinema", cinema);

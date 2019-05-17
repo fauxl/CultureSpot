@@ -13,6 +13,6 @@
 	<classpathentry exported="true" kind="lib" path="Library/json-simple-1.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="Library/log4j-1.2.17.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="/ProgettoWeb/db/mysql-connector-java-5.1.40-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/FauxL/Desktop/eclipse/CultureSpot/Library/mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

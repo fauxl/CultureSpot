@@ -72,19 +72,8 @@ public class TheaterWrapper {
 						//System.out.println(teatro.substring(in1+8,in2));
 						bean.setNome(teatro.substring(in1+8,in2));
 						bean.setAddress(posto.substring(0, in3));
-						Mappa map =Mappa.getInstance();
 						//System.out.println(map.getCoordinates((posto.substring(0, in3)).toString()));
 
-					/*	if(!map.getCoordinates(posto.substring(0, in3)).toString().equalsIgnoreCase("{}")) {
-							//System.out.println(map.getCoordinates((posto.substring(0, in3)).toString()));
-							int virgola = map.getCoordinates(posto.substring(0, in3)).toString().indexOf(",");
-							//System.out.println(virgola);
-
-						bean.setLongi(Float.parseFloat(map.getCoordinates(posto.substring(0, in3)).toString().substring(5, virgola)));
-						bean.setLati(Float.parseFloatloa(map.getCoordinates(posto.substring(0, in3)).toString().substring(virgola+6,map.getCoordinates(posto.substring(0, in3)).toString().length()-1 )));
-					//	System.out.println(Float.parseFt(map.getCoordinates(posto.substring(0, in3)).toString().substring(5, virgola)));
-						//System.out.println(Float.parseFloat(map.getCoordinates(posto.substring(0, in3)).toString().substring(virgola+6,map.getCoordinates(posto.substring(0, in3)).toString().length() -1)));
-						}*/
 						bean.setProvincia(cerca);
 						musei.add(bean);
 						//  	System.out.println(musei);

@@ -8,8 +8,8 @@ html {
 }
 
 div#mapButton a {
-    color: white;
-    text-decoration: none;
+	color: white;
+	text-decoration: none;
 }
 
 .modal {
@@ -28,30 +28,18 @@ div#mapButton a {
 }
 
 #barraSuperiore {
-	
-width: 99%;
-	
-height: 35px;
-	
-margin-top: -4.2%;
-	
-padding-left: 3%;
-	
-margin-left: -4%;
-	
-padding-right: 3%;
-	
-font: 20px;
-	
-vertical-align: middle;
-	
-background: #F5F5F5;
-	
-padding-top: 2%;
-	
-margin-bottom: 1%;
-	
-overflow:hidden;
+	width: 99%;
+	height: 35px;
+	margin-top: -4.2%;
+	padding-left: 3%;
+	margin-left: -4%;
+	padding-right: 3%;
+	font: 20px;
+	vertical-align: middle;
+	background: #F5F5F5;
+	padding-top: 2%;
+	margin-bottom: 1%;
+	overflow: hidden;
 }
 
 #dettagli {
@@ -63,7 +51,6 @@ overflow:hidden;
 	border: 0;
 	width: 50%;
 	height: 65%;
-	
 }
 
 #mappa {
@@ -75,7 +62,6 @@ overflow:hidden;
 	border: 0;
 	width: 50%;
 	height: 65%;
-	
 }
 
 /* The Close Button */
@@ -94,7 +80,7 @@ overflow:hidden;
 	transition: 0.75s ease;
 }
 
-.close:hover{
+.close:hover {
 	background: #e74c3c;
 	color: white;
 }
@@ -140,17 +126,24 @@ overflow:hidden;
 }
 
 #programButton {
-	widht: 260px;
-	/* height: 35px; */
 	padding: 2%;
 	vertical-align: middle;
 	float: right;
-	background: #526ad5;
-	color: white;
+	background: transparent;
+	color: #526ad5;
+	border: 1px;
+	border-style: solid;
+	border-color: #526ad5;
 	margin: auto;
-	margin-right: 1%;
+	margin-right: 0.5%;
 	margin-top: -5px;
 	border-radius: 6px;
+	transition: 0.3s ease;
+}
+
+#programButton:hover {
+	background: #526ad5;
+	color: white;
 }
 
 #containerLogo {
@@ -185,72 +178,72 @@ overflow:hidden;
 
 #tipologiaMusei {
 	border-radius: 8px;
-	font-size: 17.5px;
+	font-size: 17px;
 	border-width: thin;
 	border-style: solid;
 	border-color: #D8D8D8;
 	vertical-align: middle;
-	padding: 3.2% 1.2% 3.2% 1.2%;
+	padding: 3% 1.2% 3% 1.2%;
 	background-color: transparent;
 	padding-left: 22px;
 }
 
 #tipologiaMonumenti {
 	border-radius: 8px;
-	font-size: 17.5px;
+	font-size: 17px;
 	border-width: thin;
 	border-style: solid;
 	border-color: #D8D8D8;
 	vertical-align: middle;
-	padding: 3.2% 1.2% 3.2% 1.2%;
+	padding: 3% 1.2% 3% 1.2%;
 	background-color: transparent;
 	padding-left: 22px;
 }
 
 #tipologiaLibrerie {
 	border-radius: 8px;
-	font-size: 17.5px;
+	font-size: 17px;
 	border-width: thin;
 	border-style: solid;
 	border-color: #D8D8D8;
 	vertical-align: middle;
-	padding: 3.2% 1.2% 3.2% 1.2%;
+	padding: 3% 1.2% 3% 1.2%;
 	background-color: transparent;
 	padding-left: 22px;
 }
 
 #tipologiaCinema {
 	border-radius: 8px;
-	font-size: 17.5px;
+	font-size: 17px;
 	border-width: thin;
 	border-style: solid;
 	border-color: #D8D8D8;
 	vertical-align: middle;
-	padding: 3.2% 1.2% 3.2% 1.2%;
+	padding: 3% 1.2% 3% 1.2%;
 	background-color: transparent;
 	padding-left: 22px;
 }
 
 #tipologiaConcerti {
 	border-radius: 8px;
-	font-size: 17.5px;
+	font-size: 17px;
 	border-width: thin;
 	border-style: solid;
 	border-color: #D8D8D8;
 	vertical-align: middle;
-	padding: 3.2% 1.2% 3.2% 1.2%;
+	padding: 3% 1.2% 3% 1.2%;
 	background-color: transparent;
 	padding-left: 22px;
 }
 
 #tipologiaTeatri {
 	border-radius: 8px;
-	font-size: 17.5px;
+	font-size: 17px;
 	border-width: thin;
 	border-style: solid;
 	border-color: #D8D8D8;
 	vertical-align: middle;
-	padding: 3.2% 1.2% 3.2% 1.2%;
+	padding: 3% 1.2% 3% 1.2%;
 	background-color: transparent;
 	padding-left: 22px;
 }
@@ -269,16 +262,16 @@ overflow:hidden;
 }
 
 #iconaMusei {
-	font-size: 32px;
+	font-size: 29px;
 	color: #e74c3c;
 	margin: auto;
 	vertical-align: middle;
 	margin-right: 17px;
-	margin-left: 5px;
+	margin-left: 4px;
 }
 
 #iconaMonumenti {
-	font-size: 32px;
+	font-size: 29px;
 	color: #e74c3c;
 	margin: auto;
 	vertical-align: middle;
@@ -287,7 +280,7 @@ overflow:hidden;
 }
 
 #iconaLibrerie {
-	font-size: 32px;
+	font-size: 29px;
 	color: #e74c3c;
 	margin: auto;
 	vertical-align: middle;
@@ -296,7 +289,7 @@ overflow:hidden;
 }
 
 #iconaCinema {
-	font-size: 31.5px;
+	font-size: 29px;
 	color: #e74c3c;
 	margin: auto;
 	vertical-align: middle;
@@ -305,7 +298,7 @@ overflow:hidden;
 }
 
 #iconaConcerti {
-	font-size: 32px;
+	font-size: 29px;
 	color: #e74c3c;
 	margin: auto;
 	vertical-align: middle;
@@ -313,8 +306,17 @@ overflow:hidden;
 	margin-left: 12px;
 }
 
+#iconaConcerti1 {
+	font-size: 29px;
+	color: #e74c3c;
+	margin: auto;
+	vertical-align: middle;
+	margin-right: 12px;
+	margin-left: 5px;
+}
+
 #iconaTeatri {
-	font-size: 32px;
+	font-size: 29px;
 	color: #e74c3c;
 	margin: auto;
 	vertical-align: middle;
@@ -376,6 +378,22 @@ overflow:hidden;
 	display: block;
 }
 
+.dropdown7 {
+	overflow: hidden;
+	display: none;
+}
+
+.dropdown7.responsive {
+	display: block;
+}
+.dropdown8 {
+	overflow: hidden;
+	display: none;
+}
+
+.dropdown8.responsive {
+	display: block;
+}
 .dropdown {
 	overflow: hidden;
 }
@@ -390,23 +408,33 @@ overflow:hidden;
 	font-size: 16px;
 }
 
+#rowConc{
+	padding: 3%;
+	margin: auto;
+	width: 610px;
+	height: auto;
+	background: #F0F0F0;
+	border-radius: 8px;
+	font-size: 16px;
+}
+
 #img {
 	padding-left: 4%;
 	padding-top: 1%;
 	padding-right: 4%;
-	float:left;
+	float: left;
 	height: 150px;
 }
 
-#dettagliFilm{
+#dettagliFilm {
 	vertical-align: middle;
 	line-height: 1 em;
-	padding-top:3%;
+	padding-top: 3%;
 	height: 150px;
 	width: 85%;
 }
 
-#inGrassetto{
+#inGrassetto {
 	font-weight: bold;
 }
 
@@ -435,16 +463,16 @@ p#none {
 
 #searchBox {
 	font-family: 'Montserrat', sans-serif;
-	font-size: 18.5px;
+	font-size: 18px;
 	background: transparent;
 	margin: auto;
 	width: 100%;
-	height: 45.5%;
+	height: 45%;
 	border-radius: 50px;
 	border-width: thin;
 	border-style: solid;
 	border-color: #D8D8D8;
-	padding-left: 72px;
+	padding-left: 50px;
 	padding-right: 60px;
 }
 
@@ -467,20 +495,22 @@ p#details {
 }
 
 #iconCerca {
-	font-size: 22.5px;
-	margin-left: 32px;
-	position: relative;
+	font-size: 22px;
+	margin-right: 45px;
+	vertical-align: middle;
+	margin-top: -4.5%;
+	float: right;
 	color: #4ec0c4;
 }
 
 iframe {
-    overflow: hidden;
-    height: 100%;
-    padding-left: 1%;
-    padding-right: 1%;
-    border: none;
-    margin: auto;
-    width: 98%;
+	overflow: hidden;
+	height: 93%;
+	padding-left: 1%;
+	padding-right: 1%;
+	border: none;
+	margin: auto;
+	width: 98%;
 }
 
 #checkContainer {
@@ -504,8 +534,9 @@ iframe {
 	border: 0;
 	vertical-align: middle;
 }
+
 div#programButton {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #check2 {
@@ -518,9 +549,10 @@ div#programButton {
 
 .leaflet-layer {
 	position: none !important;
-	left: none !important;  
+	left: none !important;
 	top: none !important;
-	}
+}
+
 label {
 	color: #686868;
 	font-size: 18px;
@@ -533,20 +565,20 @@ footer {
 }
 
 #copyright {
-    margin: auto;
-    width: 55%;
-    margin-top: 3%;
-    margin-bottom: 1.5%;
-    heigth: 40px;
-    border-width: thin;
-    border-color: #4ec0c4;
-    padding: 1.5% 0% 1.5% 0%;
-    font-size: 16px;
-    border-style: solid;
-    color: #4ec0c4;
-    border-radius: 30px;
-    /* background: #008d95; */
-    text-align: center;
-    /* margin-bottom: 2%; */
-    background: #ffffff;
+	margin: auto;
+	width: 55%;
+	margin-top: 3%;
+	margin-bottom: 1.5%;
+	heigth: 30px;
+	border-width: thin;
+	border-color: #4ec0c4;
+	padding: 1.5% 0% 1.5% 0%;
+	font-size: 16px;
+	border-style: solid;
+	color: #4ec0c4;
+	border-radius: 50px;
+	/* background: #008d95; */
+	text-align: center;
+	/* margin-bottom: 2%; */
+	background: #ffffff;
 }
