@@ -49,7 +49,26 @@ public class GestioneData extends HttpServlet {
 			request.removeAttribute("spettacoli");
 			request.removeAttribute("teatri");
 			
-			Collection<?> cinema = (Collection<?>) CinemaWrapper.Wrapper(posto);
+			Collection<?> cinema = (Collection<?>) model.doRetrieveByKeyPlaces(posto,"cinema");
+			
+			if (cinema == null || cinema.size() == 0) {
+				 cinema = (Collection<?>) CinemaWrapper.Wrapper(posto);
+			}
+			
+			Collection<?> teatro = (Collection<?>) model.doRetrieveByKeyPlaces(posto,"teatro");
+			
+			if (teatro == null || teatro.size() == 0) {
+				 teatro = (Collection<?>) TheaterWrapper.Wrapper(posto);
+			}
+			
+			Collection<?> libreria = (Collection<?>) model.doRetrieveByKeyPlaces(posto,"Libreria");
+			
+			if (libreria  == null || libreria .size() == 0) {
+				libreria  = (Collection<?>) LibraryWrapper.Wrapper(posto);
+			}
+
+
+
 			Collection<FilmBean> film =  new LinkedList<FilmBean>();
 
 			if (cinema != null && cinema.size() != 0) {
@@ -64,7 +83,6 @@ public class GestioneData extends HttpServlet {
 				}
 				}}
 			
-			Collection<?> teatri = (Collection<?>) TheaterWrapper.Wrapper(posto);
 		/*	Collection<TheatreBean> spettacoli =  new LinkedList<TheatreBean>();
 
 			if (teatri != null && teatri.size() != 0) {
@@ -81,13 +99,13 @@ public class GestioneData extends HttpServlet {
 				
 			request.setAttribute("film", film);
 			request.setAttribute("spettacoli", null);
-			request.setAttribute("musei", model.doRetrieveByKeyMuseo(posto));
-			request.setAttribute("librerie", LibraryWrapper.Wrapper(posto));
+			request.setAttribute("musei", model.doRetrieveByKeyLuoghiMM(posto,"Museo"));
+			request.setAttribute("librerie", libreria);
 			request.setAttribute("cinema", cinema);
-			request.setAttribute("monumenti", model.doRetrieveByKeyMonumento(posto));
+			request.setAttribute("monumenti", model.doRetrieveByKeyLuoghiMM(posto,"Monumento"));
 			request.setAttribute("concerti", ConcertWrapper.Wrapper(posto));
 			// request.setAttribute("teatri", null); //
-			request.setAttribute("teatri", teatri);
+			request.setAttribute("teatri", teatro);
 			request.setAttribute("postoOut", posto); 
 
 

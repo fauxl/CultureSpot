@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.naming.Context;
@@ -30,36 +31,36 @@ public class GestioneDataModelDS implements GestioneDataModel{
 		}
 	}
 	
-	private static final String TABLE_NAME = "museo";
-	private static final String TABLE_NAME2 = "monumento";
+	private static final String TABLE_NAME = "luoghimm";
+	private static final String TABLE_NAME2 = "posti";
+	
 
 	
 	@Override
-	public synchronized Collection<Bean> doRetrieveByKeyMuseo(String code) throws SQLException {
+	public synchronized Collection<Bean> doRetrieveByKeyPlaces(String code, String place) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		Collection<Bean> musei = new LinkedList<Bean>();
-		Collection<Bean> monumenti = new LinkedList<Bean>();
-		String selectSQL = "SELECT * FROM " + GestioneDataModelDS.TABLE_NAME + " WHERE Provincia = ? or Comune =?" ;
+		Collection<Bean> luoghi = new LinkedList<Bean>();
+		String selectSQL = "SELECT * FROM " + GestioneDataModelDS.TABLE_NAME2 + " WHERE Provincia = ?  and Tipo=? or Località =? and Tipo=?" ;
 
 		try {
 			connection = ds.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
 			preparedStatement.setString(1, code);
-			preparedStatement.setString(2, code);
+			preparedStatement.setString(2, place);
+			preparedStatement.setString(3, code);
+			preparedStatement.setString(4, place);
 			ResultSet rs = preparedStatement.executeQuery();
 		
 
 			while (rs.next()) {
 				Bean bean = new Bean();
  
-				bean.setComune(rs.getString("Comune"));
 				bean.setProvincia(rs.getString("Provincia"));
-				bean.setRegione(rs.getString("Regione"));
 				bean.setNome(rs.getString("Nome"));
-				bean.setLongi(rs.getFloat("Longitudine"));
-				bean.setLati(rs.getFloat("Latitudine"));
-				musei.add(bean);
+				bean.setAddress(rs.getString("Località"));
+				bean.setType(rs.getString("Tipo"));
+				luoghi.add(bean);
 				
 			}
 		}
@@ -73,21 +74,23 @@ public class GestioneDataModelDS implements GestioneDataModel{
 					connection.close();
 			}
 		}
-		return musei;
+		return luoghi;
 	}
 		
 		@Override
-		public synchronized Collection<Bean> doRetrieveByKeyMonumento(String code) throws SQLException {
+		public synchronized Collection<Bean> doRetrieveByKeyLuoghiMM(String code, String type) throws SQLException {
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
-			Collection<Bean> monumenti = new LinkedList<Bean>();
-			String selectSQL2 = "SELECT * FROM " + GestioneDataModelDS.TABLE_NAME2 + " WHERE Provincia = ? or Comune =?  ";
+			Collection<Bean> places = new LinkedList<Bean>();
+			String selectSQL2 = "SELECT * FROM " + GestioneDataModelDS.TABLE_NAME + " WHERE Provincia = ? and Tipo=? or Comune =?  and Tipo=?" ;
 
 			try {
 				connection = ds.getConnection();
 				preparedStatement = connection.prepareStatement(selectSQL2);
 				preparedStatement.setString(1, code);
-				preparedStatement.setString(2, code);
+				preparedStatement.setString(2, type);
+				preparedStatement.setString(3, code);
+				preparedStatement.setString(4, type);
 				ResultSet rs2 = preparedStatement.executeQuery();
 
 				
@@ -100,7 +103,7 @@ public class GestioneDataModelDS implements GestioneDataModel{
 					bean.setNome(rs2.getString("Nome"));
 					bean.setLongi(rs2.getFloat("Longitudine"));
 					bean.setLati(rs2.getFloat("Latitudine"));
-					monumenti.add(bean);
+					places.add(bean);
 					
 				}
 			}
@@ -114,7 +117,55 @@ public class GestioneDataModelDS implements GestioneDataModel{
 						connection.close();
 				}
 			}
-			return monumenti;
+			return places;
 	}
+		
+		public synchronized Collection<Bean> InsertPlace(Collection<Bean> place) throws SQLException {
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			String insertSQL = "INSERT INTO `posti`(`Nome`, `Provincia`, `Località`, `Tipo`) "
+					+ "VALUES (?,?,?,?)" ;
+
+			try {
+				connection = ds.getConnection();
+				connection.setAutoCommit(false);
+				
+				if (place != null && place.size() != 0) {
+					Iterator<?> it = place.iterator();
+					while (it.hasNext()) {
+				Bean bean = (Bean) it.next();
+			
+				preparedStatement = connection.prepareStatement(insertSQL);
+				preparedStatement.setString(1, bean.getNome());
+				preparedStatement.setString(2, bean.getProvincia());
+				preparedStatement.setString(3, bean.getAddress());				
+				preparedStatement.setString(4, bean.getType());
+				preparedStatement.executeUpdate();
+				System.out.println("ok"); 
+
+					}			
+					}			//preparedStatement.executeBatch();
+					connection.commit();	
+
+				System.out.println("update effettuati");}
+			
+			
+			finally {
+				try {
+					if (preparedStatement != null)
+						preparedStatement.close();
+				}
+				finally {
+					if (connection != null)
+						connection.close();
+				}
+			}
+			return place;
+
+	}
+		
+		
+		
+		
 
 }

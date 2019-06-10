@@ -14,6 +14,7 @@
 		postoIn = "";
 	}
 	boolean bool = true;
+	
 %>
 
 <%@ page contentType="text/html; charset=UTF-8"
@@ -225,6 +226,30 @@ for (i = 0; i < modal7.length; i++) {
 	}
 </script>
 
+
+<script>
+	function caricaMappaCoordinate(div, x, y) {
+		var node = div.parentNode;
+		div.style.display = "none";
+		var mappa = document.createElement('iframe');
+		var url = 'https://maps.google.com/maps?;hl=it&q=@'+x+','+y+'&ie=UTF8&t=&z=14&iwloc=B&output=embed';
+		mappa.setAttribute('src', url);
+		node.appendChild(mappa);
+		
+	}
+	
+	function caricaMappaIndirizzo(div, x){
+		var node = div.parentNode;
+		div.style.display = "none";
+		var mappa = document.createElement('iframe');
+		var url = x;
+		mappa.setAttribute('src', url);
+		node.appendChild(mappa);
+	}
+	
+</script>
+
+
 <head>
 
 <title>Culture Spot</title>
@@ -245,6 +270,11 @@ for (i = 0; i < modal7.length; i++) {
 </head>
 
 <body>
+	<div id="divCaricamento">
+		<img
+			src=Immagini/caricamento.gif
+			id="caricamentoX"> Ricerca in corso...
+	</div>
 
 	<div id="topBar">
 		<div id="containerLogo">
@@ -255,12 +285,14 @@ for (i = 0; i < modal7.length; i++) {
 			cui sei interessato</div>
 
 	</div>
+	
+	
 	<div id="corpo">
 
 		<div id="searchBoxContainer">
 
 			<form action="home" method="post">
-				<input required name="searchbar" id="searchBox" 
+				<input required name="searchbar" id="searchBox"
 					placeholder="Inserisci il nome della città..."> <i
 					class="fas fa-search" id="iconCerca"></i>
 			</form>
@@ -324,18 +356,30 @@ for (i = 0; i < modal7.length; i++) {
 
 						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
 					</div>
+
 					<div id="myModal2" class="modal">
 						<div id="mappa">
 							<div id="barraSuperiore">
 								<span id="close" class="close" onclick="chiudi()"> <i
-									class="fas fa-times" style="margin: auto;"></i></span>Mappa:
-								<%=bean.getNome()%></div>
+									class="fas fa-times" style="margin: auto;"></i>
+								</span>Mappa:
+								<%=bean.getNome()%>
+							</div>
 
-							<iframe
-								src="https://maps.google.com/maps?;hl=en&amp;q=@<%=bean.getLati()%>,<%=bean.getLongi()%>&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
-								frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+							<div id="buttonActiveMap"
+								onmouseover="caricaMappaCoordinate(this,<%=bean.getLati()%>,<%=bean.getLongi()%>)">
+								<img
+									src=Immagini/caricamento.gif
+									id="caricamento"> Caricamento in corso, attendi...
+							</div>
 
+							<!--		<iframe 
+								src="https://maps.google.com/maps?;hl=it&amp;q=@<%=bean.getLati()%>,<%=bean.getLongi()%>&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+								frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+							</iframe>
+				-->
 						</div>
+
 					</div>
 
 				</div>
@@ -388,9 +432,18 @@ for (i = 0; i < modal7.length; i++) {
 									class="fas fa-times" style="margin: auto;"></i></span>Mappa:
 								<%=bean.getNome()%></div>
 
+							<div id="buttonActiveMap"
+								onmouseover="caricaMappaCoordinate(this,<%=bean.getLati()%>,<%=bean.getLongi()%>)">
+								<img
+									src=Immagini/caricamento.gif
+									id="caricamento"> Caricamento in corso, attendi...
+							</div>
+
+							<!-- 
 							<iframe
-								src="https://maps.google.com/maps?;hl=en&amp;q=@<%=bean.getLati()%>,<%=bean.getLongi()%>&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+								src="https://maps.google.com/maps?;hl=it&amp;q=@<%=bean.getLati()%>,<%=bean.getLongi()%>&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
 								frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+							 -->
 						</div>
 					</div>
 
@@ -436,16 +489,26 @@ for (i = 0; i < modal7.length; i++) {
 
 						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
 					</div>
+
 					<div id="myModal5" class="modal">
 						<div id="mappa">
 							<div id="barraSuperiore">
-								<span id="close" class="close" onclick="chiudi()"><i
-									class="fas fa-times" style="margin: auto;"></i></span>Mappa:
+								<span id="close" class="close" onclick="chiudi()"> <i
+									class="fas fa-times" style="margin: auto;"></i>
+								</span>Mappa:
 								<%=bean.getNome()%></div>
-
+								
+								<div id="buttonActiveMap"
+									onmouseover="caricaMappaIndirizzo(this,'https://maps.google.com/maps?width=700&amp;height=440&amp;hl=it&amp;q=<%=bean.getAddress()%>%2C%20Italy+(<%=bean.getNome()%>)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed')">
+									<img
+										src=Immagini/caricamento.gif
+										id="caricamento"> Caricamento in corso, attendi...
+								</div>
+							<!--  
 							<iframe
-								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=<%=bean.getAddress()%>%2C%20Italy+(<%=bean.getNome()%>)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=it&amp;q=<%=bean.getAddress()%>%2C%20Italy+(<%=bean.getNome()%>)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
 								frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+							-->
 						</div>
 					</div>
 
@@ -505,9 +568,18 @@ for (i = 0; i < modal7.length; i++) {
 								<span id="close" class="close" onclick="chiudi()"><i
 									class="fas fa-times" style="margin: auto;"></i></span>Mappa:
 								<%=bean.getNome()%></div>
+								
+								<div id="buttonActiveMap"
+									onmouseover="caricaMappaIndirizzo(this,'https://maps.google.com/maps?width=700&amp;height=440&amp;hl=it&amp;q=Cinema <%=bean.getNome()%>%2C%20<%=bean.getProvincia()%>+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed')">
+									<img
+										src=Immagini/caricamento.gif
+										id="caricamento"> Caricamento in corso, attendi...
+								</div>
 
-							<iframe
-								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=Cinema <%=bean.getNome()%>%2C%20<%=bean.getProvincia()%>+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"></iframe>
+							<!--  -	<iframe
+								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=it&amp;q=Cinema <%=bean.getNome()%>%2C%20<%=bean.getProvincia()%>+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"></iframe>
+						-->
+
 						</div>
 					</div>
 
@@ -567,8 +639,7 @@ for (i = 0; i < modal7.length; i++) {
 
 
 		</div>
-
-
+		
 		<div id="contenitoreConcerti" style="display: block">
 			<p id="tipologiaConcerti">
 				<%
@@ -596,13 +667,14 @@ for (i = 0; i < modal7.length; i++) {
 				%>
 				<div id="rowConc">
 					<i class="fas fa-microphone-alt" id="iconaConcerti1"></i>
-					<%=bean.getNome()%>
+				<div id="content">	<%=bean.getNome()%>
 					<%=bean.getData()%>,
-					<%=bean.getAddress()%>
-					<div onclick="mine7(<%=i%>)" id="programButton">
+					<%=bean.getAddress()%></div>
+				<div onclick="mine7(<%=i%>)" id="programButtonc">
 
 						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
 					</div>
+					
 					<div id="myModal7" class="modal">
 						<div id="mappa">
 							<div id="barraSuperiore">
@@ -610,10 +682,23 @@ for (i = 0; i < modal7.length; i++) {
 									class="fas fa-times" style="margin: auto;"></i></span>Mappa per il
 								concerto:
 								<%=bean.getNome()%></div>
-
+							
+							<!-- 
+							
 							<iframe
-								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=<%=bean.getAddress()%>%2C%20<%=bean.getProvincia()%>+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=it&amp;q=<%=bean.getAddress()%>%2C%20<%=bean.getProvincia()%>+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
 								frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+								
+							 -->
+							
+								
+							<div id="buttonActiveMap"
+									onmouseover="caricaMappaIndirizzo(this,'https://maps.google.com/maps?width=700&amp;height=440&amp;hl=it&amp;q=<%=bean.getAddress()%>%2C%20<%=bean.getProvincia()%>+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed')">
+									<img
+										src=Immagini/caricamento.gif
+										id="caricamento"> Caricamento in corso, attendi...
+								</div>
+								
 						</div>
 					</div>
 				</div>
@@ -658,10 +743,10 @@ for (i = 0; i < modal7.length; i++) {
 						while (it.hasNext()) {
 							Bean bean = (Bean) it.next();
 				%>
-				<div id="row">
-					<i class="fas fa-theater-masks" id="iconaTeatri"></i><%=bean.getNome()%>
+				<div id="rowConc">
+					<i class="fas fa-theater-masks" id="iconaTeatri"></i><div id="contentt"><%=bean.getNome()%></div>
 
-					<div onclick="mine8(<%=t%>)" id="programButton">
+					<div onclick="mine8(<%=t%>)" id="programButtonc">
 
 						<i id="iconaMappa" class="fas fa-map-marker-alt"></i> Mappa
 					</div>
@@ -671,14 +756,23 @@ for (i = 0; i < modal7.length; i++) {
 								<span id="close" class="close" onclick="chiudi()"><i
 									class="fas fa-times" style="margin: auto;"></i></span>Mappa:
 								<%=bean.getNome()%></div>
-
-							<iframe
-								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=<%=bean.getAddress()%>%2C%20Teatro <%=bean.getNome()%>)%2C%20Italy+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+							
+							<div id="buttonActiveMap"
+									onmouseover="caricaMappaIndirizzo(this,'https://maps.google.com/maps?width=700&amp;height=440&amp;hl=it&amp;q=<%=bean.getAddress()%>%2C%20Teatro <%=bean.getNome()%>)%2C%20Italy+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed')">
+									<img
+										src=Immagini/caricamento.gif
+										id="caricamento"> Caricamento in corso, attendi...
+								</div>
+								
+						<!--  	<iframe
+								src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=it&amp;q=<%=bean.getAddress()%>%2C%20Teatro <%=bean.getNome()%>)%2C%20Italy+(Titolo)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
 								frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+						-->
+						
 						</div>
 					</div>
 
-					<div onclick="mine4(<%=t%>)" id="programButton">
+					<div onclick="mine4(<%=t%>)" id="programButtonc">
 						<i class="fas fa-stream" id="iconaFilm"></i> Spettacoli
 					</div>
 
@@ -732,7 +826,10 @@ for (i = 0; i < modal7.length; i++) {
 				%>
 			</div>
 		</div>
-		<script>
+
+		
+
+<script>
 		
 // Get the modal
 var modal = document.querySelectorAll("[id='myModal']");

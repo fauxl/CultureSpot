@@ -2,6 +2,52 @@ html {
 	font-family: 'Montserrat', sans-serif;
 }
 
+#buttonActiveMap{
+	margin: auto;
+	width: 100%;
+	padding-top: 150px;
+	padding-bottom: 150px;
+	font-size: 18.5px;
+	text-align: center;
+	vertical-align: middle;
+	color: black;
+	display: block;
+	margin-top: 5%;
+
+}
+
+#caricamento{
+	width: 230px; 
+	heigth: 110px; 
+	margin-right: -35px;
+	margin-left: -7%;
+	vertical-align: middle;
+}
+
+#caricamentoX{
+	width: 180px; 
+	heigth: 80px; 
+	margin-right: -35px;
+	margin-left: 3px;
+	vertical-align: middle;
+}
+
+#divCaricamento{
+	float: right;
+	position: fixed;
+	height: 75x;
+	width: 375px;
+	font-size: 18px;
+	border-radius: 12px;
+	border-width: thin;
+	border-style: solid;
+	border-color: #526ad5;
+	margin-left: 1%;
+	margin-top: 10px;
+	background: white;
+	color: #526ad5;
+}
+
 #body {
 	width: 100%;
 	height: 100%;
@@ -16,7 +62,7 @@ div#mapButton a {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
 	z-index: 1; /* Sit on top */
-	padding: 5% 0% 10% 0%;
+	padding: 4% 0% 10% 0%;
 	align-content: center;
 	left: 0;
 	top: 0;
@@ -37,8 +83,8 @@ div#mapButton a {
 	font: 20px;
 	vertical-align: middle;
 	background: #F5F5F5;
-	padding-top: 2%;
-	margin-bottom: 1%;
+	padding-top: 2.6%;
+	margin-bottom: 0px;
 	overflow: hidden;
 }
 
@@ -57,11 +103,12 @@ div#mapButton a {
 	background-color: #fefefe;
 	margin: auto;
 	padding-top: 2%;
+	border-radius: 5px;
 	overflow-y: hidden;
 	overflow-x: hidden;
 	border: 0;
-	width: 50%;
-	height: 65%;
+	width: 57%;
+	height: 70%;
 }
 
 /* The Close Button */
@@ -71,9 +118,9 @@ div#mapButton a {
 	vertical-align: middle;
 	color: #aaaaaa;
 	float: left;
-	margin-top: -3.2%;
-	padding-left: 4.5%;
-	padding-top: 24px;
+	margin-top: -28.5px;
+    padding-left: 36px;
+	padding-top: 28px;
 	font-size: 20px;
 	font-weight: bold;
 	margin-right: 1%;
@@ -133,18 +180,44 @@ div#mapButton a {
 	color: #526ad5;
 	border: 1px;
 	border-style: solid;
+		cursor: pointer;
+	margin-left:1%;
 	border-color: #526ad5;
-	margin: auto;
 	margin-right: 0.5%;
 	margin-top: -5px;
 	border-radius: 6px;
 	transition: 0.3s ease;
 }
 
+#programButtonc {
+	padding: 2%;
+	vertical-align: middle;
+	float: left;
+	background: transparent;
+	color: #526ad5;
+	border: 1px;
+		margin-left:1%;
+	
+	border-style: solid;
+	border-color: #526ad5;
+	margin-right: 0.5%;
+	margin-top: -5px;
+	border-radius: 6px;
+		cursor: pointer;
+	
+	transition: 0.3s ease;
+}
+
+
 #programButton:hover {
 	background: #526ad5;
 	color: white;
 }
+#programButtonc:hover {
+	background: #526ad5;
+	color: white;
+}
+
 
 #containerLogo {
 	margin: auto;
@@ -243,7 +316,7 @@ div#mapButton a {
 	border-style: solid;
 	border-color: #D8D8D8;
 	vertical-align: middle;
-	padding: 3% 1.2% 3% 1.2%;
+	padding: 3% 1.2% 4% 1.2%;
 	background-color: transparent;
 	padding-left: 22px;
 }
@@ -308,17 +381,20 @@ div#mapButton a {
 
 #iconaConcerti1 {
 	font-size: 29px;
+	float: left;
 	color: #e74c3c;
 	margin: auto;
 	vertical-align: middle;
-	margin-right: 12px;
-	margin-left: 5px;
+	margin-right: 3%;
+	margin-left: 1%;
 }
 
 #iconaTeatri {
 	font-size: 29px;
 	color: #e74c3c;
 	margin: auto;
+	/* margin-top: 1%; */
+	float: left;
 	vertical-align: middle;
 	margin-right: 15px;
 	margin-left: 4px;
@@ -410,6 +486,7 @@ div#mapButton a {
 
 #rowConc{
 	padding: 3%;
+	padding-bottom: 8%;
 	margin: auto;
 	width: 610px;
 	height: auto;
@@ -505,12 +582,16 @@ p#details {
 
 iframe {
 	overflow: hidden;
-	height: 93%;
-	padding-left: 1%;
-	padding-right: 1%;
+	height: 95%;
+	padding-left: 0px;
+	padding-right: 0px;
+	border-radius: 5px;
 	border: none;
 	margin: auto;
-	width: 98%;
+	margin-left:0.5%;
+	margin-right: 0.5%;
+	margin-top: 0.4%;
+	width: 99%;
 }
 
 #checkContainer {
@@ -535,9 +616,7 @@ iframe {
 	vertical-align: middle;
 }
 
-div#programButton {
-	cursor: pointer;
-}
+
 
 #check2 {
 	margin-left: 0;
@@ -581,4 +660,16 @@ footer {
 	text-align: center;
 	/* margin-bottom: 2%; */
 	background: #ffffff;
+}
+
+div#contentt {
+    margin: auto;
+    width: 47%;
+    float: left;
+    margin-top: 1%;
+}
+div#content {
+    margin: auto;
+    width: 73%;
+    float: left;
 }

@@ -9,6 +9,7 @@ public class Bean implements Serializable {
 	String nome;
 	String address;
 	String data;
+	String type;
 	float longi;
 	float lati;
 
@@ -21,7 +22,16 @@ public class Bean implements Serializable {
 		data = "";
 		longi = 0;
 		lati = 0;
+		type="";
 
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getData() {
@@ -90,9 +100,12 @@ public class Bean implements Serializable {
 
 	@Override
 	public String toString() {
-		return "MuseoBean [comune=" + comune + ", provincia=" + provincia + ", regione=" + regione + ", nome=" + nome
-				+ ", address=" + address + ", data=" + data + ", longi=" + longi + ", lati=" + lati + "]";
+		return "Bean [comune=" + comune + ", provincia=" + provincia + ", regione=" + regione + ", nome=" + nome
+				+ ", address=" + address + ", data=" + data + ", type=" + type + ", longi=" + longi + ", lati=" + lati
+				+ "]";
 	}
+
+
 
 
 }

@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -13,7 +14,7 @@ import java.util.LinkedList;
 public class CinemaWrapper {
 
 
-	public static Collection<Bean> Wrapper(String arg) throws IOException {
+	public static Collection<Bean> Wrapper(String arg) throws IOException, SQLException {
 
 		// Make a URL to the web page
 		URL url = new URL("http://trovacinema.repubblica.it/cinema/");
@@ -36,6 +37,8 @@ public class CinemaWrapper {
 		String lin = null;
 		String line = null;
 		String code="none";
+		 GestioneDataModel model = new GestioneDataModelDS();
+
 		if(arg!=null) {
 			code = arg.toLowerCase();
 			if(code.contains(" ")) {
@@ -98,15 +101,17 @@ public class CinemaWrapper {
 								Bean bean = new Bean();
 								//		 System.out.println(line.substring(in1+33,in2));
 								bean.setNome(line.substring(in1+33,in2));
-								bean.setComune(code);
+								bean.setAddress(code);
 								bean.setProvincia(code);
+								bean.setType("cinema");
 								musei.add(bean);
 								//System.out.println(musei); 
 							}
 						}
 
 					}} 
-			} return musei;
+			} 		return model.InsertPlace(musei) ;
+
 		} else return null;}
 
 

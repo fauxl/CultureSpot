@@ -7,14 +7,17 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import javax.sql.DataSource;
 
-public class LibraryWrapper {
 
-	public static Collection<Bean> Wrapper(String arg) throws IOException {
+public class LibraryWrapper  {
+
+	public static Collection<Bean> Wrapper(String arg) throws IOException, SQLException {
 
 		URL url = new URL("https://www.librerie.it/librerie");
 
@@ -28,7 +31,8 @@ public class LibraryWrapper {
 		String line2 = null;
 		String code = ">"+arg+"<";
 		Collection<Bean> musei = new LinkedList<Bean>();
-
+		 GestioneDataModel model = new GestioneDataModelDS();
+		
 		while ((lin = br.readLine()) != null) {
 
 			if(lin.toLowerCase().contains(code.toLowerCase())){
@@ -75,12 +79,14 @@ public class LibraryWrapper {
 								if (in4!=-1 && in4<40 && in4!=16) {
 									yes = true;
 
-									bean.setAddress(line2.substring(11,in4));						
+									bean.setAddress(line2.substring(11,in4));	
+									bean.setType("Libreria");
 
 //									System.out.println(map.getCoordinates((line2.substring(11,in4)+" "+arg).toString()));
 
-							
 									musei.add(bean);
+									
+
 									//     System.out.println(bean.toString());
 								}}
 
@@ -94,6 +100,9 @@ public class LibraryWrapper {
 
 			}
 
-		} return musei;
+		}
+
+		return model.InsertPlace(musei) ;
+		
 	}
 }

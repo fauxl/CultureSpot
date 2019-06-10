@@ -6,17 +6,20 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
 public class TheaterWrapper {
 
-	public static  Collection<Bean> Wrapper(String arg) throws IOException  {
+	public static  Collection<Bean> Wrapper(String arg) throws IOException, SQLException  {
 
 		String cerca = "none";
 		if(arg!=null) {
 			cerca = arg.toLowerCase();
+			 GestioneDataModel model = new GestioneDataModelDS();
+
 			System.out.println(cerca);
 			if(cerca.contains(" ")) {
 				cerca =	cerca.replace(" ", "+");
@@ -75,6 +78,7 @@ public class TheaterWrapper {
 						//System.out.println(map.getCoordinates((posto.substring(0, in3)).toString()));
 
 						bean.setProvincia(cerca);
+						bean.setType("teatro");
 						musei.add(bean);
 						//  	System.out.println(musei);
 					
@@ -85,7 +89,7 @@ public class TheaterWrapper {
 					
 				}
 				
-			}return musei;
+			}return model.InsertPlace(musei);
 		} else return null;}
 }
 
